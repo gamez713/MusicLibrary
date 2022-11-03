@@ -6,11 +6,12 @@ git pull
   
 Next create a branch to work on your part:
 
-git checkout -b "any name here"
+git checkout -b "brachname"
 
 (Delete quotes when naming your branch)
   
-  
+
+
 Once you have the code open in vscode:
 - You will need to install node modules:
 npm i
