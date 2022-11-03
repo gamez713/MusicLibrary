@@ -1,6 +1,7 @@
 After cloning repo to your local machine:
 
 Ensure your files are up to date with github by runnung:
+
 git pull
   
 Next create a branch to work on your part:
