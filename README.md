@@ -10,8 +10,9 @@ git checkout -b "brachname"
 
 Once you have the code open in vscode:
 - You will need to install node modules:
+
 npm i
-  (You should now have a folde called node_modules)
+
 - To start the server run:
   npm run dev
   (Site will run on port 4000)
