@@ -1,16 +1,16 @@
 After cloning repo to your local machine:
 
 Ensure your files are up to date with github by runnung:
-  git pull
+git pull
   
 Next create a branch to work on your part:
-  git checkout -b "any name here"
-  (Delete quotes when naming your branch)
+git checkout -b "any name here"
+(Delete quotes when naming your branch)
   
   
 Once you have the code open in vscode:
 - You will need to install node modules:
-  npm i
+npm i
   (You should now have a folde called node_modules)
 - To start the server run:
   npm run dev
