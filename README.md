@@ -5,7 +5,9 @@ Ensure your files are up to date with github by runnung:
 git pull
   
 Next create a branch to work on your part:
+
 git checkout -b "any name here"
+
 (Delete quotes when naming your branch)
   
   
