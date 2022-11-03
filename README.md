@@ -3,14 +3,10 @@ After cloning repo to your local machine:
 Ensure your files are up to date with github by runnung:
 
 git pull
-  
+ 
 Next create a branch to work on your part:
 
-git checkout -b "brachname"
-
-(Delete quotes when naming your branch)
-  
-
+git checkout -b "brachname"  
 
 Once you have the code open in vscode:
 - You will need to install node modules:
@@ -22,7 +18,6 @@ npm i
   (Type "localhost:4000/" in your browser)
 - You can now start adding your parts to the code.
 - Every time you save the server will automatically refresh without having to kill it.
-
 
 You can test your code by using postgre on your local machine
 - Look at .env file. That is how i am connecting to my local database.
