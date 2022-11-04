@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
 </head>
 <body>
-    <h1>HOME</h1>
-    <a href="/users/login">Login<br/></a>
-    <a href="/users/registerListener">Creat A Listener Account<br/></a>
-    <a href="/users/registerMusician">Creat A Musician Account</a>
+    <a href="/users/logout">Logout</a>
+    <h1>Hello <%= user.charAt(0).toUpperCase() + user.slice(1) %></h1>
+    <h2>Musician Dashboard</h2>
 </body>
 </html>

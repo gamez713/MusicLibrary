@@ -7,7 +7,7 @@
     <title>Register</title>
 </head>
 <body>
-    <h1>Register</h1>
+    <h1>Create a Listener Account (functional)</h1>
 
     <ul>
         <% if (typeof errors != 'undefined') { %> <% errors.forEach(error=>{ %>
@@ -15,7 +15,7 @@
         <% }) %> <% } %>
     </ul>
 
-    <form action="/users/register" method="POST">
+    <form action="/users/registerListener" method="POST">
         <div>
             <input type="text" id="name" name="name" placeholder="Name" required>
         </div>
