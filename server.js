@@ -12,6 +12,8 @@ initializePassport(passport);
 
 // Middlewarwe
 app.set("view engine", "ejs");
+//For CSS Files...
+app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({extended: false}));
 app.use(flash());
 app.use(session({
@@ -47,6 +49,39 @@ app.get("/users/register", checkAuthenticated, (req, res) => {
 app.get("/users/dashboard", checkNotAuthenticated, (req, res) => {
     res.render("dashboard", {user: req.user.name });
 });
+
+// /users/dashboard/userlibrary is the url link specified
+// "userlibrary" is the ejs called from views.
+app.get("/users/dashboard/userlibrary", checkNotAuthenticated, (req, res) => {
+    res.render("userlibrary");
+});
+
+app.get("/users/dashboard/uploadmusic/addsong", checkNotAuthenticated, (req, res) => {
+    res.render("addsong", {user: req.user.name });
+});
+
+app.get("/users/dashboard/uploadmusic/addalbum", checkNotAuthenticated, (req, res) => {
+    res.render("addalbum", {user: req.user.name });
+});
+
+app.get("/users/dashboard/uploadmusic/addsingle", checkNotAuthenticated, (req, res) => {
+    res.render("addsingle", {user: req.user.name });
+});
+
+app.get("/users/dashboard/uploadmusic", checkNotAuthenticated, (req, res) => {
+    res.render("uploadmusic", {user: req.user.name });
+});
+
+app.get("/users/dashboard/browse", checkNotAuthenticated, (req, res) => {
+    res.render("browse", {user: req.user.name });
+});
+
+app.get("/users/dashboard/podcast", checkNotAuthenticated, (req, res) => {
+    res.render("podcast", {user: req.user.name });
+});
+
+
+
 app.get("/users/logout", function(req, res, next) {
     req.logout(function(err) {
       if (err) { return next(err); }
