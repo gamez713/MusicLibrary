@@ -2,6 +2,8 @@ const initializePassport = require("./passportConfig");
 const express = require("express");
 const session = require("express-session");
 const flash = require("express-flash");
+const { checkAuthenticated } = require("./basicAuth");
+const { checkNotAuthenticated } = require("./basicAuth");
 const { pool } = require("./dbConfig");
 const passport = require("passport");
 const bcrypt = require("bcrypt");
@@ -21,18 +23,6 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-function checkAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-      return res.redirect("/users/dashboard");
-    }
-    next();
-}
-function checkNotAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-      return next();
-    }
-    res.redirect("/users/login");
-}
 
 // GET Directories
 app.get("/", (req, res) => {
@@ -63,9 +53,9 @@ app.post("/users/login", passport.authenticate('local', {
 }));
 
 app.post("/users/register", async (req, res) => {
-    let { name, email, password, password2 } = req.body;
+    let { name, email, password, password2 ,musician} = req.body;
     let errors = [];
-    console.log({name, email, password, password2});
+    console.log({name, email, password, password2, musician});
 
     // Form validation
     if (!name || !email || !password || !password2) {
@@ -84,6 +74,9 @@ app.post("/users/register", async (req, res) => {
         let hashedPass = await bcrypt.hash(password, 10);
         console.log(hashedPass);
 
+        // Checking musician boolean value
+        
+
         pool.query(
             `SELECT * FROM users
             WHERE email = $1`,
@@ -100,9 +93,9 @@ app.post("/users/register", async (req, res) => {
                 } else {
                     // Register new user
                     pool.query(
-                        `INSERT INTO users (name, email, password)
-                        VALUES ($1, $2, $3)
-                        RETURNING id, password`, [name, email, hashedPass],
+                        `INSERT INTO users (name, email, password, musician)
+                        VALUES ($1, $2, $3, $4)
+                        RETURNING id, password`, [name, email, hashedPass, musician],
                         (err, results) => {
                             if (err) {
                                 throw err;

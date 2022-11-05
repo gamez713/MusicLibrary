@@ -1,6 +1,6 @@
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
-      return res.redirect("/users/dashboardListener");
+      return res.redirect("/users/dashboard");
     }
     next();
 }
