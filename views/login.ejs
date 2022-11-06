@@ -4,34 +4,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
     <title>Login</title>
 </head>
 <body>
-    <h1>Login</h1>
-
-    <ul>
-        <% if(messages.success_msg) { %>
-            <li><%= messages.success_msg %></li>
-        <% } %>
-    </ul>
-
-    <ul>
-        <% if(messages.error) { %>
-            <li><%= messages.error %></li>
-        <% } %>
-    </ul>
-
-    <form action="/users/login" method="POST">
+    <center>
         <div>
-            <input type="email" id="email" name="email" placeholder="Email" required>
+            <div class="logo">
+                <img src = "/assets/headphones.png"/>
+            </div>
         </div>
-        <div>
-            <input type="password" id="password" name="password" placeholder="Password" required>
+
+        <div class="title">
+            <h1 class="top">Login with your Coog Music Account</h1>
         </div>
-        <div>
-            <input type="submit" value="Login">
+
+        <div class="errors">
+            <ul>
+                <% if(messages.success_msg) { %>
+                    <li><%= messages.success_msg %></li>
+                <% } %>
+            </ul>
+            <ul>
+                <% if(messages.error) { %>
+                    <li><%= messages.error %></li>
+                <% } %>
+            </ul>
         </div>
-        <a href="/">Home</a>
-    </form>
+
+        <form action="/users/login" method="POST">
+            <div>
+                <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+                required>
+            </div>
+            <div>
+                <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                required>
+            </div>
+            <div>
+                <input
+                type="submit"
+                value="Login"
+                class="auth_button login_button">
+            </div>
+        </form>
+        <a href="/users/register">Create New Account</a><br>
+        <a href="/users/login">Forgot Password?</a>
+    </center>
 </body>
 </html>

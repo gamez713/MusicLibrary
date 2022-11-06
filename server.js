@@ -46,18 +46,6 @@ app.get("/users/dashboard/userlibrary", checkNotAuthenticated, (req, res) => {
     res.render("userlibrary");
 });
 
-app.get("/users/dashboard/uploadmusic/addsong", checkNotAuthenticated, (req, res) => {
-    res.render("addsong", {user: req.user.name });
-});
-
-app.get("/users/dashboard/uploadmusic/addalbum", checkNotAuthenticated, (req, res) => {
-    res.render("addalbum", {user: req.user.name });
-});
-
-app.get("/users/dashboard/uploadmusic/addsingle", checkNotAuthenticated, (req, res) => {
-    res.render("addsingle", {user: req.user.name });
-});
-
 app.get("/users/dashboard/uploadmusic", checkNotAuthenticated, (req, res) => {
     res.render("uploadmusic", {user: req.user.name });
 });
@@ -69,8 +57,6 @@ app.get("/users/dashboard/browse", checkNotAuthenticated, (req, res) => {
 app.get("/users/dashboard/podcast", checkNotAuthenticated, (req, res) => {
     res.render("podcast", {user: req.user.name });
 });
-
-
 
 app.get("/users/logout", function(req, res, next) {
     req.logout(function(err) {
@@ -111,7 +97,6 @@ app.post("/users/register", async (req, res) => {
 
         // Checking musician boolean value
         
-
         pool.query(
             `SELECT * FROM users
             WHERE email = $1`,
