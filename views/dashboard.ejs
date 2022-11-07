@@ -9,20 +9,8 @@
 </head>
 <body>
     <a href="/users/logout">Logout</a>
-    <a href="/users/dashboard">Dashboard</a>
-    <a href="/users/dashboard/userlibrary">Music Library</a>
-    <a href="/users/dashboard/uploadmusic">Upload Music</a>
-    <a href="/users/dashboard/podcast">Podcast</a>
-    <a href="/users/dashboard/browse">Browse</a>
+    <a href="/dashboard/uploadmusic">Upload Music</a>
+    <a href="/dashboard/browse">Browse</a>
     <h1>Hello <%= user.charAt(0).toUpperCase() + user.slice(1) %></h1>
-    <h2><%= user.charAt(0).toUpperCase() + user.slice(1) %> Library</h2>
-    <h3> 
-        <% playlist.forEach(x => { %>
-            <li><%= x.playlist_name %></li>
-        <% }); %>
-        <% test.forEach(name => { %>
-            <li><%= name.song_name %></li>
-        <% }); %>
-    </h3>
 </body>
 </html>
