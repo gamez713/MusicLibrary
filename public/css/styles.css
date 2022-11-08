@@ -1,60 +1,17 @@
-/* Global Styles */
+/***********
+Global Styles
+************/
+.home-icon {
+    padding-top: 25px;
+    padding-left: 25px;
+}
 ul, li {
     padding: 0;
     margin: 0;
 }
-
 body{
-    padding-top: 50px;
     background-color: rgb(21, 21, 21);
 }
-
-.logo {
-    width: 200px;
-    height: 200px;
-}
-
-.logo img {
-    width: 100%;
-    height: 100%;
-    position: relative;
-} 
-.hometitle {
-    color: antiquewhite;
-    font-size: 30px;
-}
-.title {
-    color: antiquewhite;
-    font-size: 15px;
-}
-
-.errors {
-    color: antiquewhite;
-}
-
-.errors ul {
-    list-style: none;
-}
-
-input {
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 2px solid gray;
-    border-radius: 4px;
-    background-color: darkgray;
-    color: black;
-    outline: none;
-}
-
-input[type="radio"] {
-    background-color: gray;
-    margin: 0;
-    color: antiquewhite;
-    width: 2em;
-    height: 2em;
-  }
-
 .auth_button {
     background-color: #252525;
     border: none;
@@ -68,36 +25,110 @@ input[type="radio"] {
     transition-duration: 0.4s;
     cursor: pointer;
 }
-  
 .login_button {
     background-color: #252525;
     color: white;
     border: 2px solid #252525;
     border-radius: 25px;
 }
-  
 .login_button:hover {
     background-color: white; 
     color: black; 
 }
-
+/* Gloabl-Links */
 a {
     color: antiquewhite;
     text-decoration: none;
 }
-
 a:link {
     text-decoration: none;
-}
-  
+} 
 a:visited {
     text-decoration: none;
-}
-  
+}  
 a:hover {
     text-decoration: underline;
-}
-  
+} 
 a:active {
     text-decoration: underline;
 }
+/* Global-Errors*/
+.errors {
+    color: antiquewhite;
+}
+.errors ul {
+    list-style: none;
+}
+
+/********
+Home Page
+*********/
+.home-title {
+    color: antiquewhite;
+    font-size: 30px;
+}
+.top{
+    position: relative; 
+    text-align: center;
+    padding-top: 100px;
+} 
+.bottom {
+    position: relative;
+    text-align: center;
+    
+}
+.container {
+    width: 200px;
+    height: 200px;
+}
+.container img {
+    width: 100%;
+    height: 100%;
+    position: relative; 
+}
+
+/***************
+Login & Register
+***************/
+.logo {
+    width: 200px;
+    height: 200px;
+    padding-top: 25px;
+}
+.logo img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.title {
+    color: antiquewhite;
+    font-size: 15px;
+}
+input {
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid gray;
+    border-radius: 4px;
+    background-color: darkgray;
+    color: black;
+    outline: none;
+}
+input[type="radio"] {
+    background-color: gray;
+    margin: 0;
+    color: antiquewhite;
+    width: 2em;
+    height: 2em;
+  }
+/********
+Dashboard
+*********/
+
+/***********
+Upload Music
+************/
+
+/********
+Dashboard
+********/

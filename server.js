@@ -25,7 +25,6 @@ app.use(passport.session());
 app.use(express.json());
 app.use("/users", userRoutes);
 app.use("/dashboard", userDashboard);
-
 app.get("/", (req, res) => {
     res.render("index");
 });

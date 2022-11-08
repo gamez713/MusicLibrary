@@ -54,8 +54,6 @@ route.post("/register", async (req, res) => {
         let hashedPass = await bcrypt.hash(password, 10);
         console.log(hashedPass);
 
-        // Checking musician boolean value
-
         pool.query(
             `SELECT * FROM users
             WHERE email = $1`,
