@@ -15,7 +15,7 @@ route.get("/register", checkAuthenticated, (req, res) => {
 });
 
 route.get("/dashboard", checkNotAuthenticated, (req, res) => {
-    res.render("dashboard", {user: req.user.name });
+    res.render("dashboard", {user: req.user.fname });
 });
 
 route.get("/logout", function(req, res, next) {
@@ -33,12 +33,12 @@ route.post("/login", passport.authenticate('local', {
 }));
 
 route.post("/register", async (req, res) => {
-    let { name, email, password, password2 ,musician} = req.body;
+    let { fname, lname, email, password, password2 ,musician} = req.body;
     let errors = [];
-    console.log({name, email, password, password2, musician});
+    console.log({fname, lname, email, password, password2, musician});
 
     // Form validation
-    if (!name || !email || !password || !password2) {
+    if (!fname || !email || !password || !password2) {
         errors.push({ message: "All forms must be filled"});
     }
     if (password.length < 6) {
@@ -70,9 +70,9 @@ route.post("/register", async (req, res) => {
                 } else {
                     // Register new user
                     pool.query(
-                        `INSERT INTO users (name, email, password, musician)
-                        VALUES ($1, $2, $3, $4)
-                        RETURNING id, password`, [name, email, hashedPass, musician],
+                        `INSERT INTO users (fname, lname, email, password, musician)
+                        VALUES ($1, $2, $3, $4, $5)
+                        RETURNING id, password`, [fname, lname, email, hashedPass, musician],
                         (err, results) => {
                             if (err) {
                                 throw err;
