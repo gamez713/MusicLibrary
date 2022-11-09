@@ -14,16 +14,8 @@ route.get("/register", checkAuthenticated, (req, res) => {
     res.render("register");
 });
 
-route.get("/dashboard", checkNotAuthenticated, async (req, res) => {
-    try {
-        const results = await pool.query("SELECT playlist_name, songs.song_name FROM playlist, playlist_songs, songs WHERE id = 6 AND playlist_songs.song_id = songs.song_id AND playlist.playlist_id = playlist_songs.playlist_id")
-        const data = await pool.query("SELECT playlist_name FROM playlist WHERE id = 6")
-        console.log(results.rows)
-        res.render("dashboard", {user: req.user.name, test: results.rows, playlist: data.rows});
-        } catch (e) {
-            console.log("There was an error");
-            res.send("There was an error");
-        }
+route.get("/dashboard", checkNotAuthenticated, (req, res) => {
+    res.render("dashboard", {user: req.user.name });
 });
 
 route.get("/logout", function(req, res, next) {
@@ -63,7 +55,7 @@ route.post("/register", async (req, res) => {
         console.log(hashedPass);
 
         // Checking musician boolean value
-        
+
         pool.query(
             `SELECT * FROM users
             WHERE email = $1`,

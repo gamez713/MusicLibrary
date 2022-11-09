@@ -23,13 +23,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
+app.use("/users", userRoutes);
+app.use("/dashboard", userDashboard);
 
 app.get("/", (req, res) => {
     res.render("index");
 });
-
-app.use("/users", userRoutes);
-app.use("/dashboard", userDashboard);
 
 // Port in-use msg
 app.listen(PORT, ()=>{

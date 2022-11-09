@@ -12,14 +12,5 @@
     <a href="/dashboard/uploadmusic">Upload Music</a>
     <a href="/dashboard/browse">Browse</a>
     <h1>Hello <%= user.charAt(0).toUpperCase() + user.slice(1) %></h1>
-    <h2><%= user.charAt(0).toUpperCase() + user.slice(1) %> Library</h2>
-    <h3> 
-        <% playlist.forEach(x => { %>
-            <li><%= x.playlist_name %></li>
-        <% }); %>
-        <% test.forEach(name => { %>
-            <li><%= name.song_name %></li>
-        <% }); %>
-    </h3>
 </body>
 </html>
