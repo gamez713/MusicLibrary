@@ -93,7 +93,7 @@ Login & Register
 .logo {
     width: 200px;
     height: 200px;
-    padding-top: 25px;
+    padding-top: 0px;
 }
 .logo img {
     width: 100%;
@@ -120,7 +120,15 @@ input[type="radio"] {
     color: antiquewhite;
     width: 2em;
     height: 2em;
-  }
+}
+input[type="radio"]:checked + label {
+    color: antiquewhite;
+}
+.radio span {
+    position: relative;
+    color: antiquewhite;
+}
+
 /********
 Dashboard
 *********/

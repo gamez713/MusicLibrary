@@ -6,7 +6,6 @@ const passport = require("passport");
 const app = express();
 const PORT = process.env.PORT || 4000;
 const userRoutes = require("./routes/users");
-const userDashboard = require("./routes/dashboard");
 
 initializePassport(passport);
 
@@ -24,7 +23,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
 app.use("/users", userRoutes);
-app.use("/dashboard", userDashboard);
+//app.use("/dashboard", userDashboard);
 app.get("/", (req, res) => {
     res.render("index");
 });
