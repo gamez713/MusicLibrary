@@ -6,32 +6,20 @@ const { pool } = require("../dbConfig");
 const { checkAuthenticated } = require("../basicAuth");
 const { checkNotAuthenticated } = require("../basicAuth");
 
+// -------------------- Login --------------------
 route.get("/login", checkAuthenticated, (req, res) => {
     res.render("login");
 });
-
-route.get("/register", checkAuthenticated, (req, res) => {
-    res.render("register");
-});
-
-route.get("/dashboard", checkNotAuthenticated, (req, res) => {
-    res.render("dashboard", {user: req.user.fname });
-});
-
-route.get("/logout", function(req, res, next) {
-    req.logout(function(err) {
-      if (err) { return next(err); }
-      req.flash("success_msg", "Successfully logged out");
-      res.redirect("/users/login");
-    });
-});
-
 route.post("/login", passport.authenticate('local', {
     successRedirect: "/users/dashboard",
     failureRedirect: "/users/login",
     failureFlash: true
 }));
 
+// -------------------- Register --------------------
+route.get("/register", checkAuthenticated, (req, res) => {
+    res.render("register");
+});
 route.post("/register", async (req, res) => {
     let { fname, lname, email, password, password2 ,musician} = req.body;
     let errors = [];
@@ -86,6 +74,32 @@ route.post("/register", async (req, res) => {
             }
         )
     }
+});
+
+// -------------------- Dashboard --------------------
+route.get("/dashboard", checkNotAuthenticated, (req, res) => {
+    res.render("dashboard", {user: req.user.fname });
+});
+
+// -------------------- Upload --------------------
+route.get("/uploadmusic", checkNotAuthenticated, (req, res) => {
+    res.render("uploadmusic", {user: req.user.name });
+});
+
+// -------------------- Browse --------------------
+route.get("/browse", checkNotAuthenticated, (req, res) => {
+    res.render("browse", {user: req.user.name });
+});
+
+// -------------------- Music Player --------------------
+
+// -------------------- Logout --------------------
+route.get("/logout", function(req, res, next) {
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      req.flash("success_msg", "Successfully logged out");
+      res.redirect("/users/login");
+    });
 });
 
 module.exports = route;
