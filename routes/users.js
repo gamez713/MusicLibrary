@@ -6,47 +6,27 @@ const { pool } = require("../dbConfig");
 const { checkAuthenticated } = require("../basicAuth");
 const { checkNotAuthenticated } = require("../basicAuth");
 
+// -------------------- Login --------------------
 route.get("/login", checkAuthenticated, (req, res) => {
     res.render("login");
 });
-
-route.get("/register", checkAuthenticated, (req, res) => {
-    res.render("register");
-});
-
-route.get("/dashboard", checkNotAuthenticated, async (req, res) => {
-    try {
-        const results = await pool.query("SELECT playlist_name, songs.song_name FROM playlist, playlist_songs, songs WHERE id = 6 AND playlist_songs.song_id = songs.song_id AND playlist.playlist_id = playlist_songs.playlist_id")
-        const data = await pool.query("SELECT playlist_name FROM playlist WHERE id = 6")
-        console.log(results.rows)
-        res.render("dashboard", {user: req.user.name, test: results.rows, playlist: data.rows});
-        } catch (e) {
-            console.log("There was an error");
-            res.send("There was an error");
-        }
-});
-
-route.get("/logout", function(req, res, next) {
-    req.logout(function(err) {
-      if (err) { return next(err); }
-      req.flash("success_msg", "Successfully logged out");
-      res.redirect("/users/login");
-    });
-});
-
 route.post("/login", passport.authenticate('local', {
     successRedirect: "/users/dashboard",
     failureRedirect: "/users/login",
     failureFlash: true
 }));
 
+// -------------------- Register --------------------
+route.get("/register", checkAuthenticated, (req, res) => {
+    res.render("register");
+});
 route.post("/register", async (req, res) => {
-    let { name, email, password, password2 ,musician} = req.body;
+    let { fname, lname, email, password, password2 ,musician} = req.body;
     let errors = [];
-    console.log({name, email, password, password2, musician});
+    console.log({fname, lname, email, password, password2, musician});
 
     // Form validation
-    if (!name || !email || !password || !password2) {
+    if (!fname || !email || !password || !password2) {
         errors.push({ message: "All forms must be filled"});
     }
     if (password.length < 6) {
@@ -62,8 +42,6 @@ route.post("/register", async (req, res) => {
         let hashedPass = await bcrypt.hash(password, 10);
         console.log(hashedPass);
 
-        // Checking musician boolean value
-        
         pool.query(
             `SELECT * FROM users
             WHERE email = $1`,
@@ -80,9 +58,9 @@ route.post("/register", async (req, res) => {
                 } else {
                     // Register new user
                     pool.query(
-                        `INSERT INTO users (name, email, password, musician)
-                        VALUES ($1, $2, $3, $4)
-                        RETURNING id, password`, [name, email, hashedPass, musician],
+                        `INSERT INTO users (fname, lname, email, password, musician)
+                        VALUES ($1, $2, $3, $4, $5)
+                        RETURNING id, password`, [fname, lname, email, hashedPass, musician],
                         (err, results) => {
                             if (err) {
                                 throw err;
@@ -96,6 +74,32 @@ route.post("/register", async (req, res) => {
             }
         )
     }
+});
+
+// -------------------- Dashboard --------------------
+route.get("/dashboard", checkNotAuthenticated, (req, res) => {
+    res.render("dashboard", {user: req.user.fname });
+});
+
+// -------------------- Upload --------------------
+route.get("/uploadmusic", checkNotAuthenticated, (req, res) => {
+    res.render("uploadmusic", {user: req.user.name });
+});
+
+// -------------------- Browse --------------------
+route.get("/browse", checkNotAuthenticated, (req, res) => {
+    res.render("browse", {user: req.user.name });
+});
+
+// -------------------- Music Player --------------------
+
+// -------------------- Logout --------------------
+route.get("/logout", function(req, res, next) {
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      req.flash("success_msg", "Successfully logged out");
+      res.redirect("/users/login");
+    });
 });
 
 module.exports = route;

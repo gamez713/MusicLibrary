@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/global.css" rel="stylesheet" type="text/css">
     <title>Dashboard</title>
 </head>
 <body>
@@ -12,14 +11,5 @@
     <a href="/dashboard/uploadmusic">Upload Music</a>
     <a href="/dashboard/browse">Browse</a>
     <h1>Hello <%= user.charAt(0).toUpperCase() + user.slice(1) %></h1>
-    <h2><%= user.charAt(0).toUpperCase() + user.slice(1) %> Library</h2>
-    <h3> 
-        <% playlist.forEach(x => { %>
-            <li><%= x.playlist_name %></li>
-        <% }); %>
-        <% test.forEach(name => { %>
-            <li><%= name.song_name %></li>
-        <% }); %>
-    </h3>
 </body>
 </html>

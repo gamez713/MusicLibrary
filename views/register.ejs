@@ -8,6 +8,9 @@
     <title>Register</title>
 </head>
 <body>
+    <div class="home-icon">
+        <a href="/"><img src="/assets/home.png"></div></a>
+    </div>
     <center>
         <div>
             <div class="logo">
@@ -16,7 +19,7 @@
         </div>
 
         <div class="title">
-            <h1 class="top">Create Coog Music Account</h1>
+            <h1>Create Coog Music Account</h1>
         </div>
         <div class="errors">
             <ul>
@@ -30,9 +33,17 @@
             <div>
                 <input
                 type="text"
-                id="name"
-                name="name"
-                placeholder="Name"
+                id="fname"
+                name="fname"
+                placeholder="First Name"
+                required>
+            </div>
+            <div>
+                <input
+                type="text"
+                id="lname"
+                name="lname"
+                placeholder="Last Name"
                 required>
             </div>
             <div>
@@ -65,8 +76,8 @@
 
             <div>
                 <label class="radio">
-                    <input type="radio" name="musician" value="1" required>YES
-                    <input type="radio" name="musician" value="0" required>NO
+                    <input type="radio" name="musician" value="1" required><span>YES</span>
+                    <input type="radio" name="musician" value="0" required><span>NO</span>
                 </label>
             </div>
             <div>
@@ -76,10 +87,7 @@
                 class="auth_button login_button">
             </div>
         </form>    
-        
         <a href="/users/login">Login Here</a>
-
     </center>
-
 </body>
 </html>
