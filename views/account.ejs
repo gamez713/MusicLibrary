@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+    <title>Account</title>
+</head>
+<body>
+    <a href="/users/dashboard">Home</a>
+    <a href="/users/browse">Browse</a>
+    <a href="/users/musicplayer">MusicPlayer</a>
+    <a href="/users/uploadmusic">Upload Music</a>
+    <a href="/users/logout">Logout</a>
+
+    <center>
+        <div class="title">
+            <h1>Update Info</h1>
+        </div>
+
+        <div class="errors">
+            <ul>
+                <% if(messages.success_msg) { %>
+                    <li><%= messages.success_msg %></li>
+                <% } %>
+            </ul>
+            <ul>
+                <% if(messages.error) { %>
+                    <li><%= messages.error %></li>
+                <% } %>
+            </ul>
+        </div>
+
+        <form action="/users/account" method="POST">
+            <div>
+                <h2 class="userInfo"><%= userfname%></h2>
+                <input
+                type="text"
+                id="fname"
+                name="fname"
+                placeholder="First Name"
+                required>
+            </div>
+            <div>
+                <h2 class="userInfo"><%= userlname%></h2>
+                <input
+                type="text"
+                id="lname"
+                name="lname"
+                placeholder="Last Name"
+                required>
+            </div>
+            <div>
+                <h2 class="userInfo"><%= useremail%></h2>
+                <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+                required>
+            </div>
+            <div>
+                <input
+                type="submit"
+                value="Submit"
+                class="auth_button login_button">
+            </div>
+        </form>
+    </center>
+</body>
+</html>
