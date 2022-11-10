@@ -51,7 +51,7 @@ function initialize(passport) {
   passport.serializeUser((user, done) => done(null, user.id));
 
   passport.deserializeUser((id, done) => {
-    pool.query(`SELECT * FROM users WHERE id = $1`, [id], (err, results) => {
+    pool.query(`SELECT * FROM users WHERE id = $1`, x=[id], (err, results) => {
       if (err) {
         return done(err);
       }
