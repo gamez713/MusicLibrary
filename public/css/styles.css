@@ -91,8 +91,8 @@ Home Page
 Login & Register
 ***************/
 .logo {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     padding-top: 0px;
 }
 .logo img {
@@ -106,7 +106,7 @@ Login & Register
 }
 input {
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 5px 0;
     box-sizing: border-box;
     border: 2px solid gray;
     border-radius: 4px;
@@ -128,7 +128,9 @@ input[type="radio"]:checked + label {
     position: relative;
     color: antiquewhite;
 }
-
+.links {
+    padding: 10px;
+}
 /********
 Dashboard
 *********/

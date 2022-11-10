@@ -3,8 +3,8 @@ const route = express();
 const passport = require("passport");
 const bcrypt = require("bcrypt");
 const { pool } = require("../dbConfig");
-const { checkAuthenticated } = require("../basicAuth");
-const { checkNotAuthenticated } = require("../basicAuth");
+const { checkAuthenticated } = require("../controllers/users-auth");
+const { checkNotAuthenticated } = require("../controllers/users-auth");
 
 // -------------------- Login --------------------
 route.get("/login", checkAuthenticated, (req, res) => {
