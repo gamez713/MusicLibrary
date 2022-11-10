@@ -92,6 +92,9 @@ route.get("/browse", checkNotAuthenticated, (req, res) => {
 });
 
 // -------------------- Music Player --------------------
+route.get("/musicplayer", checkNotAuthenticated, (req, res) => {
+    res.render("musicplayer", {user: req.user.name });
+});
 
 // -------------------- Logout --------------------
 route.get("/logout", function(req, res, next) {
