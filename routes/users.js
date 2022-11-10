@@ -38,10 +38,11 @@ route.post("/register", async (req, res) => {
     if (errors.length > 0) {
         res.render("register", { errors });
     } else {
-        // Validation passed
+        // Form validation passed
         let hashedPass = await bcrypt.hash(password, 10);
         console.log(hashedPass);
 
+        // Query to check if email exist
         pool.query(
             `SELECT * FROM users
             WHERE email = $1`,
@@ -56,7 +57,7 @@ route.post("/register", async (req, res) => {
                     errors.push({ message: "Email already exists"});
                     res.render("register", {errors});
                 } else {
-                    // Register new user
+                    // Validation passed, register new user
                     pool.query(
                         `INSERT INTO users (fname, lname, email, password, musician)
                         VALUES ($1, $2, $3, $4, $5)
@@ -89,6 +90,52 @@ route.get("/uploadmusic", checkNotAuthenticated, (req, res) => {
 // -------------------- Browse --------------------
 route.get("/browse", checkNotAuthenticated, (req, res) => {
     res.render("browse", {user: req.user.name });
+});
+
+// -------------------- Account --------------------
+route.get("/account", checkNotAuthenticated, (req, res) => {
+    res.render("account", {
+        userfname: req.user.fname,
+        userlname: req.user.lname,
+        useremail: req.user.email
+    });
+});
+route.post("/account", async (req, res) => {
+    let { fname, lname, email} = req.body;
+    const id = req.user.id;
+    console.log({fname, lname, email});
+
+    // Query to check if email exist
+    pool.query(
+        `SELECT * FROM users
+        WHERE email = $1`,
+        [email],
+        (err, results) => {
+            if (err) {
+                throw err;
+            }
+            // If email exist
+            if (results.rows.length > 0) {
+                req.flash("error", "Email Taken");
+                res.redirect("/users/account");
+            } else {
+                // Validation passed, update DB
+                pool.query(
+                    `UPDATE "users"
+                    SET "fname" = $1, "lname" = $2, "email" = $3
+                    WHERE "id" = $4`, [fname, lname, email, id],
+                    (err, results) => {
+                        if (err) {
+                            throw err;
+                        }
+                        console.log(results.rows)
+                        req.flash("success_msg", "Account Updated");
+                        res.redirect("/users/account");
+                    }
+                )
+            }
+        }
+    )
 });
 
 // -------------------- Music Player --------------------
