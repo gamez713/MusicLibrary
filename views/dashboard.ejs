@@ -8,9 +8,11 @@
     <title>Dashboard</title>
 </head>
 <body>
+    <a href="/users/browse">Browse</a>
+    <a href="/users/musicplayer">MusicPlayer</a>
+    <a href="/users/uploadmusic">Upload Music</a>
+    <a href="/users/account">Account</a>
     <a href="/users/logout">Logout</a>
-    <a href="/dashboard/uploadmusic">Upload Music</a>
-    <a href="/dashboard/browse">Browse</a>
     <h1 class="text-color">Hello <%= user.charAt(0).toUpperCase() + user.slice(1) %></h1>
     <h2 class="text-color"><%= user.charAt(0).toUpperCase() + user.slice(1) %> Library</h2>
         <% for (var i = 0; i < pcount;  i++ ) { %>

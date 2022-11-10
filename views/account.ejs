@@ -5,20 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
-    <title>Login</title>
+    <title>Account</title>
 </head>
 <body>
-    <div class="home-icon">
-        <a href="/"><img src="/assets/home.png"></div></a>
-    </div>
+    <a href="/users/dashboard">Home</a>
+    <a href="/users/browse">Browse</a>
+    <a href="/users/musicplayer">MusicPlayer</a>
+    <a href="/users/uploadmusic">Upload Music</a>
+    <a href="/users/logout">Logout</a>
+
     <center>
-        <div>
-            <div class="logo">
-                <img src = "/assets/headphones.png"/>
-            </div>
-        </div>
         <div class="title">
-            <h1>Login with your Coog Music Account</h1>
+            <h1>Update Info</h1>
         </div>
 
         <div class="errors">
@@ -34,8 +32,27 @@
             </ul>
         </div>
 
-        <form action="/users/login" method="POST">
+        <form action="/users/account" method="POST">
             <div>
+                <h2 class="userInfo"><%= userfname%></h2>
+                <input
+                type="text"
+                id="fname"
+                name="fname"
+                placeholder="First Name"
+                required>
+            </div>
+            <div>
+                <h2 class="userInfo"><%= userlname%></h2>
+                <input
+                type="text"
+                id="lname"
+                name="lname"
+                placeholder="Last Name"
+                required>
+            </div>
+            <div>
+                <h2 class="userInfo"><%= useremail%></h2>
                 <input
                 type="email"
                 id="email"
@@ -45,22 +62,11 @@
             </div>
             <div>
                 <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Password"
-                required>
-            </div>
-            <div>
-                <input
                 type="submit"
-                value="Login"
+                value="Submit"
                 class="auth_button login_button">
             </div>
         </form>
-        <div class="links">
-           <a href="/users/register">Create New Account</a><br> 
-        </div>
     </center>
 </body>
 </html>
