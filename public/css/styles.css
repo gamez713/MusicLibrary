@@ -124,6 +124,32 @@ input[type="radio"] {
 /********
 Dashboard
 *********/
+.playlist-header{
+    background-color: coral;
+    height: 20%;
+}
+
+.big-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.tablecontainer {
+    box-sizing: border-box;
+    width: 200px;
+    height: 200px;
+    gap:20px;
+    padding: 10px;
+    margin: 20px;
+    background-color: black;
+    border: 2px solid gray;
+}
+.text-color{
+    color: white;
+}
+
+
+
 
 /***********
 Upload Music

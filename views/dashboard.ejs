@@ -4,12 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
     <title>Dashboard</title>
 </head>
 <body>
     <a href="/users/logout">Logout</a>
     <a href="/dashboard/uploadmusic">Upload Music</a>
     <a href="/dashboard/browse">Browse</a>
-    <h1>Hello <%= user.charAt(0).toUpperCase() + user.slice(1) %></h1>
+    <h1 class="text-color">Hello <%= user.charAt(0).toUpperCase() + user.slice(1) %></h1>
+    <h2 class="text-color"><%= user.charAt(0).toUpperCase() + user.slice(1) %> Library</h2>
+        <% for (var i = 0; i < pcount;  i++ ) { %>
+            <div class="big-container">
+            <table class="tablecontainer"> 
+            <th class="playlist-header">
+                  <%= playlist[i].playlist_name %> <button>+</button>
+                  <tr>
+                    <% test[i].forEach(d=> { %>
+                        <td class="text-color"><%= d %></td>
+                  </tr>
+            </th>
+           <% }); %>
+        <% } %>
+            </table>
+        </div>
 </body>
 </html>
