@@ -21,12 +21,12 @@ route.get("/register", checkAuthenticated, (req, res) => {
     res.render("register");
 });
 route.post("/register", async (req, res) => {
-    let { name, email, password, password2 ,musician} = req.body;
+    let { fname, lname, email, password, password2 ,musician } = req.body;
     let errors = [];
-    console.log({name, email, password, password2, musician});
+    console.log({ fname, lname, email, password, password2 ,musician });
 
     // Form validation
-    if (!name || !email || !password || !password2) {
+    if (!fname || !email || !password || !password2) {
         errors.push({ message: "All forms must be filled"});
     }
     if (password.length < 6) {
@@ -59,9 +59,9 @@ route.post("/register", async (req, res) => {
                 } else {
                     // Validation passed, register new user
                     pool.query(
-                        `INSERT INTO users (name, email, password, musician)
-                        VALUES ($1, $2, $3, $4)
-                        RETURNING id, password`, [name, email, hashedPass, musician],
+                        `INSERT INTO users (fname, lname, email, password, musician)
+                        VALUES ($1, $2, $3, $4, $5)
+                        RETURNING id, password`, [fname, lname, email, hashedPass, musician],
                         (err, results) => {
                             if (err) {
                                 throw err;
@@ -112,7 +112,6 @@ route.get("/logout", function(req, res, next) {
       res.redirect("/users/login");
     });
 });
-
 
 // -------------------- Upload --------------------
 route.get("/uploadmusic", checkNotAuthenticated, (req, res) => {
