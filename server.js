@@ -21,10 +21,22 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
-const userRoutes = require("./routes/users");
 app.set("view engine", "ejs");
-app.use("/users", userRoutes);
-//app.use("/dashboard", userDashboard);
+const accountRoute = require("./routes/Account");
+const browseRoute = require("./routes/Browse");
+const dashboardRoute = require("./routes/Dashboard");
+const loginRoute = require("./routes/Login");
+const musicplayerRoute = require("./routes/Musicplayer");
+const registerRoute = require("./routes/Register");
+const uploadRoute = require("./routes/Uploadmusic");
+
+app.use("/account", accountRoute);
+app.use("/browse", browseRoute);
+app.use("/dashboard", dashboardRoute);
+app.use("/login", loginRoute);
+app.use("/musicplayer", musicplayerRoute);
+app.use("/register", registerRoute);
+app.use("/uploadmusic", uploadRoute);
 app.get("/", (req, res) => {
     res.render("index");
 });
