@@ -8,65 +8,77 @@
     <title>Account</title>
 </head>
 <body>
-    <a href="/dashboard">Home</a>
-    <a href="/browse">Browse</a>
-    <a href="/musicplayer">MusicPlayer</a>
-    <a href="/uploadmusic">Upload Music</a>
-    <a href="/logout">Logout</a>
-
-    <center>
-        <div class="title">
-            <h1>Update Info</h1>
-        </div>
-
-        <div class="errors">
+    <nav class="nav-bar">
+        <div class="nav-logo">
+            <a href="/dashboard"><img src="/assets/home.png"></a>
+        </div>    
+        <div class="nav-list">
             <ul>
-                <% if(messages.success_msg) { %>
-                    <li><%= messages.success_msg %></li>
-                <% } %>
-            </ul>
-            <ul>
-                <% if(messages.error) { %>
-                    <li><%= messages.error %></li>
-                <% } %>
+                <li><a href="/browse">Browse</a></li>
+                <li><a href="/musicplayer">MusicPlayer</a></li>
+                <li><a href="/uploadmusic">Upload Music</a></li>
+                <li><a href="/">Logout</a></li>
             </ul>
         </div>
+    </nav>
+    <div class="main">
+        <center>
+            <div class="account-title">
+                    <h1>Update Info</h1>
+            </div>
 
-        <form action="/users/account" method="POST">
-            <div>
-                <h2 class="userInfo"><%= userfname%></h2>
-                <input
-                type="text"
-                id="fname"
-                name="fname"
-                placeholder="First Name"
-                required>
-            </div>
-            <div>
-                <h2 class="userInfo"><%= userlname%></h2>
-                <input
-                type="text"
-                id="lname"
-                name="lname"
-                placeholder="Last Name"
-                required>
-            </div>
-            <div>
-                <h2 class="userInfo"><%= useremail%></h2>
-                <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Email"
-                required>
-            </div>
-            <div>
-                <input
-                type="submit"
-                value="Submit"
-                class="auth_button login_button">
-            </div>
-        </form>
-    </center>
+            <form action="/users/account" method="POST">
+                <div class="errors">
+                    <ul>
+                        <% if(messages.success_msg) { %>
+                            <li><%= messages.success_msg %></li>
+                        <% } %>
+                    </ul>
+                    <ul>
+                        <% if(messages.error) { %>
+                            <li><%= messages.error %></li>
+                        <% } %>
+                    </ul>
+                </div>
+
+                <div>
+                    <h2 class="userInfo"><%= userfname%></h2>
+                    <input
+                    type="text"
+                    id="fname"
+                    name="fname"
+                    placeholder="Update First Name"
+                    required>
+                </div>
+
+                <div>
+                    <h2 class="userInfo"><%= userlname%></h2>
+                    <input
+                    type="text"
+                    id="lname"
+                    name="lname"
+                    placeholder="Update Last Name"
+                    required>
+                </div>
+
+                <div>
+                    <h2 class="userInfo"><%= useremail%></h2>
+                    <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Update Email"
+                    required>
+                </div>
+                
+                <div>
+                    <input
+                    type="submit"
+                    value="Submit"
+                    class="auth_button login_button">
+                </div>
+            </form>
+        </center>
+    </div>
 </body>
 </html>

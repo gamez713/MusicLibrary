@@ -8,59 +8,67 @@
     <title>Login</title>
 </head>
 <body>
-    <div class="home-icon">
-        <a href="/"><img src="/assets/home.png"></div></a>
-    </div>
-    <center>
-        <div>
+    <nav class="nav-bar">
+        <div class="nav-logo">
+            <a href="/"><img src="/assets/home.png"></a>
+        </div>      
+        <div class="nav-list">
+            <ul>
+                <li><a href="/register">Join Us!</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="main">
+        <center>
             <div class="logo">
                 <img src = "/assets/headphones.png"/>
             </div>
-        </div>
-        <div class="title">
-            <h1>Login with your Coog Music Account</h1>
-        </div>
 
-        <div class="errors">
-            <ul>
-                <% if(messages.success_msg) { %>
-                    <li><%= messages.success_msg %></li>
-                <% } %>
-            </ul>
-            <ul>
-                <% if(messages.error) { %>
-                    <li><%= messages.error %></li>
-                <% } %>
-            </ul>
-        </div>
+            <form action="/login" method="POST">
+                <div class="title">
+                    <h1>Login with your Coog Music Account</h1>
+                </div>
 
-        <form action="/login" method="POST">
-            <div>
-                <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Email"
-                required>
-            </div>
-            <div>
-                <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Password"
-                required>
-            </div>
-            <div>
-                <input
-                type="submit"
-                value="Login"
-                class="auth_button login_button">
-            </div>
-        </form>
-        <div class="links">
-           <a href="/register">Create New Account</a><br> 
-        </div>
-    </center>
+                <div class="errors">
+                    <ul>
+                        <% if(messages.success_msg) { %>
+                            <li><%= messages.success_msg %></li>
+                        <% } %>
+                    </ul>
+                    <ul>
+                        <% if(messages.error) { %>
+                            <li><%= messages.error %></li>
+                        <% } %>
+                    </ul>
+                </div>
+
+                <div>
+                    <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Email"
+                    required>
+                </div>
+
+                <div>
+                    <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    required>
+                </div>
+                
+                <div>
+                    <input
+                    type="submit"
+                    value="Login"
+                    class="auth_button login_button">
+                </div>
+            </form>
+        </center>
+    </div>
 </body>
 </html>

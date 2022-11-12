@@ -10,6 +10,7 @@ route.get("/", checkNotAuthenticated, (req, res) => {
         useremail: req.user.email
     });
 });
+
 route.post("/", async (req, res) => {
     let { fname, lname, email} = req.body;
     const id = req.user.id;

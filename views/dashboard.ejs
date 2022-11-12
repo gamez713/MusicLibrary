@@ -8,12 +8,21 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <a href="/browse">Browse</a>
-    <a href="/musicplayer">MusicPlayer</a>
-    <a href="/uploadmusic">Upload Music</a>
-    <a href="/account">Account</a>
-    <a href="/">Logout</a>
-    <h1 class="text-color">Hello <%= user.charAt(0).toUpperCase() + user.slice(1) %></h1>
+    <nav class="nav-bar">
+        <div class="nav-user">
+            <h1>Hello, <%= user.charAt(0).toUpperCase() + user.slice(1) %></h1>
+        </div>      
+        <div class="nav-list">
+            <ul>
+                <li><a href="/browse">Browse</a></li>
+                <li><a href="/musicplayer">MusicPlayer</a></li>
+                <li><a href="/uploadmusic">Upload Music</a></li>
+                <li><a href="/account">Account</a></li>
+                <li><a href="/">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    
     <h2 class="text-color"><%= user.charAt(0).toUpperCase() + user.slice(1) %> Library</h2>
         <% for(var i = 0; i < pcount; i++) { 
             var sname = ''

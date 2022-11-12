@@ -5,12 +5,10 @@ Global Styles
     padding: 0;
     margin: 0;
 }
-.home-icon {
-    padding-top: 25px;
-    padding-left: 25px;
-}
 body{
     background-color: rgb(21, 21, 21);
+    padding: 0;
+    margin: 0;
 }
 .auth_button {
     background-color: #252525;
@@ -41,6 +39,44 @@ body{
 .errors ul {
     list-style: none;
 }
+/********
+Nav Bar
+*********/
+.nav-bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+    background-color: #252525;
+	width: 100%;
+	height: 80px;
+}
+.nav-bar img {
+    align-items: center;
+    padding: 2px;
+}
+.nav-user {
+    padding-left: 12px;
+    color: antiquewhite;
+    font-size: 20px;
+}
+.nav-list ul {
+    padding-right: 12px;
+    display: flex;
+}
+.nav-list li {
+    list-style: none;
+}
+.nav-list li a {
+    text-decoration: none;
+    padding: 12px;
+    display: block;
+    color: antiquewhite;
+    font-size: 20px;
+    
+}
+.nav-list li a:hover {
+    text-decoration: underline;
+} 
 
 /********
 Home Page
@@ -72,6 +108,14 @@ Home Page
 /***************
 Login & Register
 ***************/
+.main {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
 .logo {
     width: 180px;
     height: 180px;
@@ -80,7 +124,18 @@ Login & Register
 .logo img {
     width: 100%;
     height: 100%;
-    position: relative;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    position:absolute;
+    opacity: 0.25;
+}
+form {
+    width: 500px;
+    height: 400px;
+    position:relative;
+    z-index:10;
 }
 .title {
     color: antiquewhite;
@@ -110,25 +165,7 @@ input[type="radio"]:checked + label {
     position: relative;
     color: antiquewhite;
 }
-.links {
-    padding: 10px;
-}
-.links a {
-    color: antiquewhite;
-    text-decoration: none;
-}
-.links a:link {
-    text-decoration: none;
-} 
-.links a:visited {
-    text-decoration: none;
-}  
-.links a:hover {
-    text-decoration: underline;
-} 
-.links a:active {
-    text-decoration: underline;
-}
+
 /********
 Dashboard
 *********/
@@ -156,14 +193,16 @@ Dashboard
     color: white;
 }
 
-
-
-
 /******
 Account
 ******/
+.account-title h1 {
+    color: antiquewhite;
+}
 .userInfo {
     color: antiquewhite;
+    text-align: left;
+    padding-left: 140px;
 }
 
 /********
