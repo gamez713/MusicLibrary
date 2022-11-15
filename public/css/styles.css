@@ -193,6 +193,10 @@ Dashboard
     color: white;
 }
 
+.button-align-right{
+    float: right;
+}
+
 /******
 Account
 ******/

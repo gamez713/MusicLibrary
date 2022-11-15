@@ -24,33 +24,26 @@
     </nav>
     
     <h2 class="text-color"><%= user.charAt(0).toUpperCase() + user.slice(1) %> Library</h2>
-        <% for(var i = 0; i < pcount; i++) { 
-            var sname = ''
-            var sink = ''
-            %>
+        <% for(var i = 0; i < pcount; i++) { %>
             <div class="big-container">
             <table class="tablecontainer"> 
             <th class="playlist-header">
                   <%= playlist[i].playlist_name %> <button>+</button>
                     <tr>
-                        <% test[i].forEach(d=> {
-                            if (d.split("://")[1] != undefined)
-                               sink = d.split("://")[1]
-                            if (d.split('https')[0] != ' ')
-                               sname = d.split('https')[0]
-                            if(sink != undefined) {
-                                 %>
-                            <td class="text-color"><a href='<%= "https://".concat(sink) %>' target="blank"><%= sname %></a></td>
-
-                            <% } %>
-                        </tr>
-                  </th>
-                          
-           <% }); %>
-        </tr>
-  </th>
+                        <% b = 0 %>
+                        <% test[i].forEach(d=> { %>
+                        <% songlink = test2[i] %>
+                            <td class="text-color">
+                                <a href='<%= songlink[b] %>' target="blank"><%= d %></a>
+                                <button class="button-align-right">-</button>
+                                <button class="button-align-right">Info</button>
+                            </td>
+                            <% b += 1 %>
+                    </tr>
+            </th>   
+            <% }) %>
         <% } %>
-            </table>
+        </table>
         </div>
 </body>
 </html>
