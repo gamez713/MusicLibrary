@@ -12,7 +12,7 @@ app.use(session({
     saveUninitialized: false
 }));
 
-//Passport
+// Passport
 const initPassport = require("./controllers/passportConfig");
 const passport = require("passport");
 initPassport(passport);
@@ -28,7 +28,6 @@ const loginRoute = require("./routes/Login");
 const musicplayerRoute = require("./routes/Musicplayer");
 const registerRoute = require("./routes/Register");
 const uploadRoute = require("./routes/Uploadmusic");
-
 app.use("/account", accountRoute);
 app.use("/browse", browseRoute);
 app.use("/dashboard", dashboardRoute);
