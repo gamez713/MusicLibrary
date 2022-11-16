@@ -12,7 +12,7 @@ app.use(session({
     saveUninitialized: false
 }));
 
-//Passport
+// Passport
 const initPassport = require("./controllers/passportConfig");
 const passport = require("passport");
 initPassport(passport);
@@ -28,8 +28,11 @@ const loginRoute = require("./routes/Login");
 const musicplayerRoute = require("./routes/Musicplayer");
 const registerRoute = require("./routes/Register");
 const uploadRoute = require("./routes/Uploadmusic");
-
+const addalbumRoute = require("./routes/Addalbum");
+const addsongRoute = require("./routes/Addsong");
 app.use("/account", accountRoute);
+app.use("/addalbum", addalbumRoute);
+app.use("/addsong", addsongRoute);
 app.use("/browse", browseRoute);
 app.use("/dashboard", dashboardRoute);
 app.use("/login", loginRoute);
