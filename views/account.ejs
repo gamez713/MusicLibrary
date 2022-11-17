@@ -15,8 +15,8 @@
     <div class="nav-list">
         <ul>
             <li><a href="/browse">Browse</a></li>
+            <li><a href="/album">Albums</a></li>
             <li><a href="/musicplayer">MusicPlayer</a></li>
-            <li><a href="/uploadmusic">Upload Music</a></li>
             <li><a href="/">Logout</a></li>
         </ul>
     </div>
@@ -27,7 +27,7 @@
             <img src="/assets/UHseal.png">
         </div>
         <h2><%= userfname%> <%= userlname%></h2>
-        <h3>Created: <%= userdate.slice(1)%></h3>
+        <h3>Joined: <%= userdate.slice(1)%></h3>
     </div>
 
     <div class="right-container">
@@ -35,7 +35,7 @@
 
         <center>
         <div class="form-container">
-            <form action="/users/account" method="POST">
+            <form action="/account" method="POST">
                 <div class="errors">
                     <ul>
                         <% if(messages.success_msg) { %>
