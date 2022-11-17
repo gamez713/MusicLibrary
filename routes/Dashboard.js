@@ -2,6 +2,7 @@ const express = require("express");
 const route = express.Router();
 const { pool } = require("../dbConfig");
 const { checkNotAuthenticated } = require("../controllers/users-auth");
+const { json } = require("express/lib/response");
 
 route.get("/", checkNotAuthenticated, async (req, res) => {
     try {
@@ -10,13 +11,13 @@ route.get("/", checkNotAuthenticated, async (req, res) => {
         //counts number of playlist from specified user.
         const playlist_count = await pool.query("SELECT COUNT(playlist.playlist_name) FROM playlist WHERE id =" + x)
         //gets the playlist_names sorted by date created.
-        const playlist_names = await pool.query ("SELECT playlist.playlist_name FROM playlist WHERE id = " + x + " ORDER BY date_created")
+        const playlist_names = await pool.query("SELECT playlist.playlist_name FROM playlist WHERE id = " + x + " ORDER BY date_created")
         for (let b = 0; b < playlist_count.rows[0].count; b++) {
             //Song count of a playlist
             const songs_count = await pool.query("SELECT COUNT(songs.song_name) FROM playlist, playlist_songs, songs WHERE id = "+ x + " AND playlist.playlist_id = playlist_songs.playlist_id AND songs.song_id = playlist_songs.song_id AND playlist_name ="+ "'"+ playlist_names.rows[b].playlist_name + "'" )
             //Get the songs from each playlist
             //const songs = await pool.query("SELECT songs.song_name, song_link.song_link FROM playlist, playlist_songs, songs WHERE id ="+ x + "AND playlist.playlist_id = playlist_songs.playlist_id AND songs.song_id = playlist_songs.song_id AND playlist_name =" + "'" + playlist_names.rows[b].playlist_name + "'" )
-            const songs = await pool.query("SELECT songs.song_name, song_link.song_link FROM playlist, playlist_songs, songs, song_link WHERE id = "+ x + " AND playlist.playlist_id = playlist_songs.playlist_id AND songs.song_id = playlist_songs.song_id  AND songs.song_id = song_link.song_id AND playlist_name =" + "'" + playlist_names.rows[b].playlist_name + "'" )
+            const songs = await pool.query("SELECT songs.song_name FROM playlist, playlist_songs, songs WHERE id = "+ x + " AND playlist.playlist_id = playlist_songs.playlist_id AND songs.song_id = playlist_songs.song_id AND playlist_name =" + "'" + playlist_names.rows[b].playlist_name + "'" )
             
             dict[b] = [];
             dict2[b] = [];
@@ -56,7 +57,7 @@ async function pid_generator(){
 }
 
 route.post("/", async (req, res) => {
-    let { playlist_name, playlist_name2, playlist_name3, song_name, playlist_name4, song_name2 } = req.body;
+    let { playlist_name, playlist_name2, playlist_name3, song_name, playlist_name4, song_name2, playlist_name5 } = req.body;
     if(typeof playlist_name !== 'undefined'){
         try {
             await pool.query(
@@ -100,6 +101,20 @@ route.post("/", async (req, res) => {
             
             await pool.query('DELETE FROM playlist_songs WHERE playlist_id= '+"'"+playlistID.rows[0].playlist_id+"' AND song_id = "+"'"+songID.rows[0].song_id+"'"+'')
             res.redirect("/dashboard")
+        } catch (e) {
+            console.log(e);
+            res.redirect("/dashboard");
+        }
+    }
+    if(typeof playlist_name5 !== 'undefined'){
+        try {
+            const songs_count = await pool.query("SELECT COUNT(playlist_songs.playlist_id) FROM playlist_songs, playlist WHERE playlist.playlist_name= "+"'"+playlist_name5+"'"+" AND playlist_songs.playlist_id = playlist.playlist_id")
+            const songs = await pool.query("SELECT songs.song_name AS name, songs.artist_f_name AS artist, songs.artist_l_name AS lname, song_link.song_img AS image, song_link.song_link AS path FROM playlist, playlist_songs, songs, song_link WHERE id = "+ "'"+ x + "'" + " AND playlist.playlist_id = playlist_songs.playlist_id AND songs.song_id = playlist_songs.song_id  AND songs.song_id = song_link.song_id AND playlist_name = "+ "'"+ playlist_name5 +"'")
+            for(let i=0; i<songs_count.rows[0].count; i++){
+                Q = songs.rows[i].artist + " " + songs.rows[i].lname
+                songs.rows[i].artist = Q
+            }
+            res.render("musicplayer", {songs: songs.rows, scount: songs_count.rows[0].count});
         } catch (e) {
             console.log(e);
             res.redirect("/dashboard");
