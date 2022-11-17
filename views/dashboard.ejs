@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head>1
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +16,7 @@
         <div class="nav-list">
             <ul>
                 <li><a href="/browse">Browse</a></li>
-                <li><a href="/album">Albums</a></li>
+                <li><a href="/insights">Insights</a></li>
                 <li><a href="/musicplayer">MusicPlayer</a></li>
                 <li><a href="/account">Account</a></li>
                 <li><a href="/">Logout</a></li>
@@ -114,6 +114,20 @@
             </select>
         </p>
 -->
+<script>
+    //alert(document.referrer);
+    console.log(document.referrer);
+    let artist = '<%- JSON.stringify(artist) %>'
+    //let myObj = JSON.stringify(track);
+    let artist_name = JSON.parse(artist)
+    console.log(artist)
+    if(document.referrer == 'http://localhost:4000/addsong') {
+        window.onload = () => {
+      //alert(window.history.previous.href);
+        alert(artist);
+    }
+}
+</script>
 
     </div>
     <h2 class="text-color"><%= user.charAt(0).toUpperCase() + user.slice(1) %> Playlists</h2>
