@@ -59,6 +59,16 @@ Nav Bar
     color: antiquewhite;
     font-size: 20px;
 }
+.nav-user a {
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    color: antiquewhite;
+    font-size: 20px;
+}
+.nav-user a:hover {
+    text-decoration: underline;
+} 
 .nav-list ul {
     padding-right: 12px;
     display: flex;
@@ -191,6 +201,10 @@ Dashboard
 }
 .text-color{
     color: white;
+}
+
+.button-align-right{
+    float: right;
 }
 
 /******
