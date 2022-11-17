@@ -316,3 +316,25 @@ Account
     text-align: left;
     padding-left: 30px;
 }
+/******
+Add Songs
+******/
+.song-information{
+
+    color: antiquewhite;
+}
+.song-button{
+    background-color: darkgray;
+
+    border: none;
+    color: black;
+    margin: 5px;
+    height: 45px;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid gray;
+}

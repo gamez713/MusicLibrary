@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Song</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/css/styles.css" rel="stylesheet" type="text/css">
+        <title>Add Song</title>
 </head>
 <body>
-    <div>
-        <a href="/logout">Logout</a>
-        <a href="/dashboard">Dashboard</a>
-        <h1>Add Song to Album</h1>
+    <nav class="nav-bar">
+        <div class="nav-logo">
+            <a href="/dashboard"><img src="/assets/home.png"></a>
+        </div>
+        <div class="nav-list">
+            <ul>
+                <li><a href="/browse">Browse</a></li>
+                <li><a href="/musicplayer">MusicPlayer</a></li>
+                <li><a href="/account">Account</a></li>
+                <li><a href="/">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class = "song-information">
+        <center>
+        <h1>Upload a Song</h1>
         <p className='song-info'>Song Info</p>
             <form action="/addsong/uploadsong" enctype="multipart/form-data" method="POST">
                 <div>
@@ -20,18 +34,20 @@
                     <input type='text' id="song_genre" name="song_genre" placeholder='Genre' required/>
                 </div>
                 <div>
-                    <label for="song_file">Upload song file:</label>
+                    <div>
+                        <label for="song_file">Upload song file:</label>
+                    </div>
                     <input type="file" id="song_file" name="song_file" accept=".mp3">
                 </div>   
                 <div>
                     <input type="submit" value="Add Song">
                 </div>  
-            </form>  
+            </form>
+            
+            <a href="/usersongs"><button class = "song-button">Song Inventory</button></a>
+        </center>
         </div>
-        <button class='button'>
-            <a href="/usersongs">Song Inventory</a>
-        </button>
-        </div> 
-    </div>
+
+        
 </body>
 </html>

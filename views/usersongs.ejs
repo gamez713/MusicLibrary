@@ -4,16 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Song</title>
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+    <title>User Song</title>
 </head>
 <body>
-    <div class="table-data">
-<h2>Users Songs</h2>
+    <nav class="nav-bar">
+        <div class="nav-logo">
+            <a href="/dashboard"><img src="/assets/home.png"></a>
+        </div>
+        <div class="nav-list">
+            <ul>
+                <li><a href="/browse">Browse</a></li>
+                <li><a href="/musicplayer">MusicPlayer</a></li>
+                <li><a href="/addsong">Upload Music</a></li>
+                <li><a href="/account">Account</a></li>
+                <li><a href="/">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="song-information">
+        <center>
+<h2>Your Uploaded Songs</h2>
     <table border="1">
         <tr>
             <th>song_name</th>
             <th>song_genre</th>
-            <th>song_time</th>
             <th>artist_f_name</th>
             <th>artist_l_name</th>
             <th>id</th>
@@ -27,7 +42,6 @@
         <tr>
             <td><%=data.song_name %></td>
             <td><%=data.song_genre %></td>
-            <td><%=data.song_time %></td>
             <td><%=data.artist_f_name %></td>
             <td><%=data.artist_l_name %></td>
             <td><%=data.id %></td>
@@ -40,6 +54,7 @@
             </tr>
         <% } %>
     </table>
+</center>
     </div>
 </body>
 </html>
