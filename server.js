@@ -28,7 +28,7 @@ const dashboardRoute = require("./routes/Dashboard");
 const loginRoute = require("./routes/Login");
 const musicplayerRoute = require("./routes/Musicplayer");
 const registerRoute = require("./routes/Register");
-const uploadRoute = require("./routes/Uploadmusic");
+const usersongsRoute = require("./routes/Usersongs");
 const addalbumRoute = require("./routes/Addalbum");
 const addsongRoute = require("./routes/Addsong");
 app.use("/account", accountRoute);
@@ -40,7 +40,7 @@ app.use("/dashboard", dashboardRoute);
 app.use("/login", loginRoute);
 app.use("/musicplayer", musicplayerRoute);
 app.use("/register", registerRoute);
-app.use("/uploadmusic", uploadRoute);
+app.use("/usersongs", usersongsRoute);
 app.get("/", (req, res) => {
     res.render("index");
 });

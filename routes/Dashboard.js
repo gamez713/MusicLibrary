@@ -3,7 +3,6 @@ const route = express.Router();
 const { pool } = require("../dbConfig");
 const { checkNotAuthenticated } = require("../controllers/users-auth");
 
-
 route.get("/", checkNotAuthenticated, async (req, res) => {
     try {
         const dict = {}

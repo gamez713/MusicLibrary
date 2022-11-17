@@ -29,23 +29,10 @@ const uploadFileToBlob = async (file) => {
         };
         console.log('clean up complete');
     });
+    return blockBlobClient;
 };
 
 
-
-async function uploadFilToFiles() {
-    const directoryClient = serviceClient.getShareClient(SHARE).getDirectoryClient(DIRECTORY);
-
-    const content = "Hello World!";
-    const fileName = "newfile" + new Date().getTime();
-    const fileClient = directoryClient.getFileClient(fileName);
-    await fileClient.create(content.length);
-    console.log(`Create file ${fileName} successfully`);
-
-    // Upload file range
-    await fileClient.uploadRange(content, 0, content.length);
-    console.log(`Upload file range "${content}" to ${fileName} successfully`);
-}
 
 async function uploadSong(file, title, genre, user) {
     if (!file) {
@@ -66,15 +53,40 @@ async function uploadSong(file, title, genre, user) {
     var time = 0 // compute song length
     var count = 0
     var rate = 0
-    console.log("Debug", id, fName, lName, time, count, rate)
-    file.name = `${id}_${title}`
+    console.log("Debug", id, fName, lName, time)
+    file.name = `${id}_${title}.mp3`
     
-    await uploadFileToBlob(file)
-
+    const blobinfo = await uploadFileToBlob(file)
+    console.log(`created blob:\n\tname=${file.name}\n\turl=${blobinfo.url}`);
      pool.query(
-        `INSERT INTO songs (song_id, song_name, song_genre, song_time, song_artist, total_count, average_rate)
-        VALUES ($1, $2, $3, $4, $5, $6, $7)`, 
-        [id, title, genre, time, fName+ ' ' +lName, count, rate],
+        `INSERT INTO songs (song_id, song_name, song_genre, song_time, artist_f_name, artist_l_name)
+        VALUES ($1, $2, $3, $4, $5, $6)`, 
+        [id, title, genre, time, fName, lName],
+        (err, results) => {
+            if (err) {
+                throw err;
+            }
+            console.log(results.rows)
+            
+        }
+    )
+    pool.query(
+        `INSERT INTO songbelong (song_id, id)
+        VALUES ($1, $2)`, 
+        [id, user.id],
+        (err, results) => {
+            if (err) {
+                throw err;
+            }
+            console.log(results.rows)
+            
+        }
+    )
+
+    pool.query(
+        `INSERT INTO song_link (song_id, song_link)
+        VALUES ($1, $2)`, 
+        [id, blobinfo.url],
         (err, results) => {
             if (err) {
                 throw err;
