@@ -205,6 +205,60 @@ Account
     padding-left: 140px;
 }
 
+/******
+Browse
+*******/
+.search-input-wrapper {
+    width: 100%;
+    height: 5rem;
+    background-color:#252525;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    visibility: visible; 
+}
+
+.search-input {
+    width: 30rem;
+    display: flex;
+    align-items:center;
+    color: black;
+}
+
+.search-input input {
+    width: 27rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 0.1rem solid black;
+    font-size: 1.5rem;
+    letter-spacing: 0.15rem;
+    outline:none;
+    color: grey;
+    margin: 1rem;
+}
+
+.search-input i {
+    font-size: 1.5rem;
+    color: black;
+    cursor: pointer;
+}
+
+.home-logo {
+    background-color: #252525;
+    align-items: center;
+    padding: 2px;
+}
+
+.Search button {
+    background-color: #252525;
+    border: none;
+    color:rgb(21, 21, 21);
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+
+}
 /********
 Dashboard
 ********/
