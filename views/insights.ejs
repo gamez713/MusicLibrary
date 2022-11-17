@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+    <title>Insights</title>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-logo">
+            <a href="/dashboard"><img src="/assets/home.png"></a>
+        </div>    
+        <div class="nav-list">
+            <ul>
+                <li><a href="/browse">Browse</a></li>
+                <li><a href="/insights">Insights</a></li>
+                <li><a href="/musicplayer">MusicPlayer</a></li>
+                <li><a href="/account">Account</a></li>
+                <li><a href="/">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="big-container">
+        <form class="form-b" action="/insights method="POST">
+          <div>
+            <p class="text-color">Album Created Date From</p>
+            <input
+            type="date"
+            id="album_from"
+            name="album_from">
+          </div>
+          <div>
+            <p class="text-color">Album Created Date To</p>
+            <input
+            type="date"
+            id="album_to"
+            name="album_to">
+          </div>
+          <div>
+            <p class="text-color">Genre Type</p>
+            <input
+            type="text"
+            id="genre"
+            name="genre">
+          </div>
+          <div>
+            <p class="text-color">Rating</p>
+            <input
+            type="text"
+            id="rating"
+            name="rating">
+          </div>
+          <div>
+            <p class="text-color">Playcount From</p>
+            <input
+            type="text"
+            id="playcount_from"
+            name="playcount_from">
+            <p class="text-color">Playcount To</p>
+            <input
+            type="text"
+            id="playcount_to"
+            name="playcount_to">
+          </div>
+          <div>
+            <p class="text-color">User Name</p>
+            <input
+            type="text"
+            id="user"
+            name="user">
+          </div>
+            <div>
+                <input
+                type="submit"
+                value="View Report"
+                class="auth_button login_button">
+            </div>
+        </form>
+      </div>
+<section>
+    <h1 class="h1-header">Reports</h1>
+    <div class="tbl-header">
+      <table class="table-table" cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+            <th class="th-table">Song</th>
+            <th class="th-table">Album</th>
+            <th class="th-table">Genre</th>
+            <th class="th-table">Rating</th>
+            <th class="th-table">Playcount</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="tbl-content">
+      <table class="table-table" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+          <tr>
+            <td class="td-table">AAC</td>
+            <td class="td-table">AUSTRALIAN COMPANY </td>
+            <td class="td-table">$1.38</td>
+            <td class="td-table">+2.01</td>
+            <td class="td-table">-0.36%</td>
+          </tr>
+          <tr>
+            <td class="td-table" colspan="7">No Data Found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</body>
+</html>
