@@ -23,6 +23,7 @@ app.use(passport.session());
 app.set("view engine", "ejs");
 const accountRoute = require("./routes/Account");
 const browseRoute = require("./routes/Browse");
+const albumRoute = require("./routes/Album");
 const dashboardRoute = require("./routes/Dashboard");
 const loginRoute = require("./routes/Login");
 const musicplayerRoute = require("./routes/Musicplayer");
@@ -31,6 +32,7 @@ const uploadRoute = require("./routes/Uploadmusic");
 
 app.use("/account", accountRoute);
 app.use("/browse", browseRoute);
+app.use("/album", albumRoute);
 app.use("/dashboard", dashboardRoute);
 app.use("/login", loginRoute);
 app.use("/musicplayer", musicplayerRoute);
