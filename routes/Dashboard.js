@@ -33,6 +33,83 @@ route.get("/", checkNotAuthenticated, async (req, res) => {
         }
 });
 
+
+async function pid_generator(){
+    var playlist_id_result = 'P_';
+    var characters = "1234567890"
+    for ( var d = 0; d < 8; d++ ) {
+        playlist_id_result += characters.charAt(Math.floor(Math.random() * 8));
+    }
+
+    var playlist_id_array = await pool.query('SELECT playlist_id FROM playlist')
+    var temp = [];
+
+    playlist_id_array.rows.forEach(p=>{
+        temp.push(p.playlist_id)
+    })
+    var hasVal = Object.values(temp).includes(playlist_id_result);
+    if (hasVal==true){
+        pid_generator()
+    }else{
+        return playlist_id_result;
+    }
+}
+
+route.post("/", async (req, res) => {
+    let { playlist_name, playlist_name2, playlist_name3, song_name, playlist_name4, song_name2 } = req.body;
+    if(typeof playlist_name !== 'undefined'){
+        try {
+            await pool.query(
+                `INSERT INTO playlist (id, playlist_id, playlist_name)
+                VALUES ($1, $2, $3)`, 
+                [x[0], await pid_generator() , playlist_name])
+            res.redirect("/dashboard")
+        } catch (e) {
+            console.log(e);
+            res.redirect("/dashboard");
+        }
+    }
+    if(typeof playlist_name2 !== 'undefined'){
+        try {
+            await pool.query(
+                'DELETE FROM playlist_songs WHERE playlist_id in (SELECT playlist_id FROM playlist WHERE playlist_name = '+"'"+playlist_name2+"'"+' AND id ='+ x +');')
+            await pool.query(
+                'DELETE FROM playlist WHERE playlist_name= '+"'"+playlist_name2+"'"+' AND id ='+ x)
+                res.redirect("/dashboard")
+        } catch (e) {
+            console.log(e);
+            res.redirect("/dashboard");
+        }
+    }
+    if(typeof playlist_name3 !== 'undefined'){
+        try {
+            var songID = await pool.query('SELECT song_id FROM songs WHERE song_name = '+"'"+ song_name + "'"+'')
+            var playlistID = await pool.query('SELECT playlist_id FROM playlist WHERE playlist_name = '+"'"+ playlist_name3 +"'"+' AND id='+ x)
+            
+            await pool.query('INSERT INTO playlist_songs VALUES ('+"'"+playlistID.rows[0].playlist_id+"', "+"'"+songID.rows[0].song_id+"'"+')')
+            res.redirect("/dashboard")
+        } catch (e) {
+            console.log(e);
+            res.redirect("/dashboard");
+        }
+    }
+    if(typeof playlist_name4 !== 'undefined'){
+        try {
+            var songID = await pool.query('SELECT song_id FROM songs WHERE song_name = '+"'"+ song_name2 + "'"+'')
+            var playlistID = await pool.query('SELECT playlist_id FROM playlist WHERE playlist_name = '+"'"+ playlist_name4 +"'"+' AND id='+ x)
+            
+            await pool.query('DELETE FROM playlist_songs WHERE playlist_id= '+"'"+playlistID.rows[0].playlist_id+"' AND song_id = "+"'"+songID.rows[0].song_id+"'"+'')
+            res.redirect("/dashboard")
+        } catch (e) {
+            console.log(e);
+            res.redirect("/dashboard");
+        }
+    }
+});
+
+
+
+
 route.get("/", function(req, res, next) {
     req.logout(function(err) {
       if (err) { return next(err); }

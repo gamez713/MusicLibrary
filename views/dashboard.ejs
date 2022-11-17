@@ -15,6 +15,7 @@
         <div class="nav-list">
             <ul>
                 <li><a href="/browse">Browse</a></li>
+                <li><a href="/album">Album</a></li>
                 <li><a href="/musicplayer">MusicPlayer</a></li>
                 <li><a href="/uploadmusic">Upload Music</a></li>
                 <li><a href="/account">Account</a></li>
@@ -22,21 +23,111 @@
             </ul>
         </div>
     </nav>
-    
-    <h2 class="text-color"><%= user.charAt(0).toUpperCase() + user.slice(1) %> Library</h2>
+
+    <div class="big-container">
+        <form class="form-a" action="/dashboard" method="POST">
+            <input
+            type="text"
+            id="playlist_name"
+            name="playlist_name"
+            placeholder="Playlist Name"
+            required>
+            <div>
+                <input
+                type="submit"
+                value="Create Playlist"
+                class="auth_button login_button">
+            </div>
+        </form>
+
+        <form class="form-a" action="/dashboard" method="POST">
+            <input
+            type="text"
+            id="playlist_name2"
+            name="playlist_name2"
+            placeholder="Playlist Name (Case Sense)"
+            required>
+            <div>
+                <input
+                type="submit"
+                value="Delete Playlist"
+                class="auth_button login_button">
+            </div>
+        </form>
+
+        <form class="form-a" action="/dashboard" method="POST">
+            <div>
+                <input
+                type="text"
+                id="playlist_name3"
+                name="playlist_name3"
+                placeholder="Playlist Name"
+                required>
+            </div>
+            <div>
+                <input
+                type="text"
+                id="song_name"
+                name="song_name"
+                placeholder="Song Name"
+                required>
+            </div>
+            <div>
+                <input
+                type="submit"
+                value="Add Song to Playlist"
+                class="auth_button login_button">
+            </div>
+        </form>
+
+        <form class="form-a" action="/dashboard" method="POST">
+            <div>
+                <input
+                type="text"
+                id="playlist_name4"
+                name="playlist_name4"
+                placeholder="Playlist Name"
+                required>
+            </div>
+            <div>
+                <input
+                type="text"
+                id="song_name2"
+                name="song_name2"
+                placeholder="Song Name"
+                required>
+            </div>
+            <div>
+                <input
+                type="submit"
+                value="Delete Song From Playlist"
+                class="auth_button login_button">
+            </div>
+        </form>
+
+<!--
+        <p> Select one from the given options:
+            <select id="select1">
+                <option value="free">Free</option>
+                <option value="basic">Basic</option>
+                <option value="premium">Premium</option>
+            </select>
+        </p>
+-->
+
+    </div>
+    <h2 class="text-color"><%= user.charAt(0).toUpperCase() + user.slice(1) %> Playlists</h2>
         <% for(var i = 0; i < pcount; i++) { %>
             <div class="big-container">
             <table class="tablecontainer"> 
             <th class="playlist-header">
-                  <%= playlist[i].playlist_name %> <button>+</button>
+                  <%= playlist[i].playlist_name %> 
                     <tr>
                         <% b = 0 %>
                         <% test[i].forEach(d=> { %>
                         <% songlink = test2[i] %>
                             <td class="text-color">
                                 <a href='<%= songlink[b] %>' target="blank"><%= d %></a>
-                                <button class="button-align-right">-</button>
-                                <button class="button-align-right">Info</button>
                             </td>
                             <% b += 1 %>
                     </tr>

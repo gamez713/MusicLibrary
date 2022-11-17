@@ -141,7 +141,7 @@ Login & Register
     position:absolute;
     opacity: 0.25;
 }
-form {
+.form-z {
     width: 500px;
     height: 400px;
     position:relative;
@@ -205,6 +205,11 @@ Dashboard
 
 .button-align-right{
     float: right;
+}
+
+.form-a{
+    gap: 10px;
+    margin: 10px;
 }
 
 /******

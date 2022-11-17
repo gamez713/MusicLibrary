@@ -22,10 +22,4 @@ route.post("/uploadsong", type, async (req, res) => {
     res.redirect("/dashboard");
 });
 
-
-
-
-
-
-
 module.exports = route;
