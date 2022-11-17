@@ -4,18 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+    <title>Browse</title>
 </head>
 <body>
-    <a href="/dashboard">Dashboard</a>
-    <div class="search-input-wrapper">
-        <div class="search-input">
-            <input type="text" placeholder="Search" />
-            <i class="fas fa-times"></i>
-        </div>  
-    </div>
-        <div class="search-icon">
-            <i class="fas fa-search"></i>
+    <nav class="nav-bar">
+        <div class="nav-logo">
+            <a href="/dashboard"><img src="/assets/home.png"></a>
         </div>
+        <div class="search">
+            <input type="text" placeholder="Search" />
+        </div>  
+        <div class="nav-list">
+            <ul>
+                <li><a href="/browse">Browse</a></li>
+                <li><a href="/album">Albums</a></li>
+                <li><a href="/musicplayer">MusicPlayer</a></li>
+                <li><a href="/">Logout</a></li>
+            </ul>
+        </div>
+    </nav>    
 </body>
 </html>

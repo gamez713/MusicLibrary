@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const { pool } = require("../dbConfig");
 const { checkAuthenticated } = require("../controllers/users-auth");
 
-route.get("/", checkAuthenticated, (req, res) => {
+route.get("/", (req, res) => {
     res.render("register");
 });
 

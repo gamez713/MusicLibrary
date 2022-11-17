@@ -5,12 +5,16 @@ const { checkNotAuthenticated } = require("../controllers/users-auth");
 
 route.get("/", checkNotAuthenticated, (req, res) => {
     let date = JSON.stringify(req.user.date_created)
-        date = date.slice(1,11)
+        month = date.slice(5,8)
+        day = date.slice(9,11)
+        year = date.slice(3,5)
+        dateCreated = month + '/' + day + '/' + year
+
     res.render("account", {
         userfname: req.user.fname,
         userlname: req.user.lname,
         useremail: req.user.email,
-        userdate: date
+        userdate: dateCreated
 
     });
 });
