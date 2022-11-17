@@ -36,7 +36,7 @@ route.post("/", async (req, res) => {
             // If email exist
             if (results.rows.length > 0) {
                 req.flash("error", "Email Taken");
-                res.redirect("/users/account");
+                res.redirect("/account");
             } else {
                 // Validation passed, update DB
                 pool.query(
@@ -49,7 +49,7 @@ route.post("/", async (req, res) => {
                         }
                         console.log(results.rows)
                         req.flash("success_msg", "Account Updated");
-                        res.redirect("/users/account");
+                        res.redirect("/account");
                     }
                 )
             }
