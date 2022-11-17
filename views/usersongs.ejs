@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Song</title>
+</head>
+<body>
+    <div class="table-data">
+<h2>Users Songs</h2>
+    <table border="1">
+        <tr>
+            <th>song_name</th>
+            <th>song_genre</th>
+            <th>song_time</th>
+            <th>artist_f_name</th>
+            <th>artist_l_name</th>
+            <th>id</th>
+        </tr>
+        
+        <%
+        if(userData.length!=0){
+        var i=1;
+        userData.rows.forEach( (data) => {
+        %>
+        <tr>
+            <td><%=data.song_name %></td>
+            <td><%=data.song_genre %></td>
+            <td><%=data.song_time %></td>
+            <td><%=data.artist_f_name %></td>
+            <td><%=data.artist_l_name %></td>
+            <td><%=data.id %></td>
+            
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="6">No Songs were uploaded by you yet</td>
+            </tr>
+        <% } %>
+    </table>
+    </div>
+</body>
+</html>
