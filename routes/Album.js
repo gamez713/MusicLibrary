@@ -3,7 +3,7 @@ const route = express.Router();
 const { checkNotAuthenticated } = require("../controllers/users-auth");
 
 route.get("/", checkNotAuthenticated, (req, res) => {
-    res.render("uploadmusic");
+    res.render("album");
 });
 
 module.exports = route;

@@ -4,10 +4,14 @@ const { pool } = require("../dbConfig");
 const { checkNotAuthenticated } = require("../controllers/users-auth");
 
 route.get("/", checkNotAuthenticated, (req, res) => {
+    let date = JSON.stringify(req.user.date_created)
+        date = date.slice(1,11)
     res.render("account", {
         userfname: req.user.fname,
         userlname: req.user.lname,
-        useremail: req.user.email
+        useremail: req.user.email,
+        userdate: date
+
     });
 });
 
