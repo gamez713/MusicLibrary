@@ -27,8 +27,16 @@ route.get("/", checkNotAuthenticated, async (req, res) => {
             }
         }
 
-        res.render("dashboard", {user: req.user.fname, test: dict, test2: dict2, playlist: playlist_names.rows, pcount: playlist_count.rows[0].count});
-        } catch (e) {
+        if (req.user.musician == true) {
+            console.log("Musician Page")
+            res.render("dashboard", {user: req.user.fname, test: dict, test2: dict2, playlist: playlist_names.rows, pcount: playlist_count.rows[0].count});
+        } else {
+            console.log("Listener Page")
+            res.render("dashboard2", {user: req.user.fname, test: dict, test2: dict2, playlist: playlist_names.rows, pcount: playlist_count.rows[0].count});
+        }
+
+        
+    } catch (e) {
             console.log(e);
             res.send("There was an error");
         }

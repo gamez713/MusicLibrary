@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,77 +8,87 @@
     <title>Account</title>
 </head>
 <body>
-    <nav class="nav-bar">
-        <div class="nav-logo">
-            <a href="/dashboard"><img src="/assets/home.png"></a>
-        </div>    
-        <div class="nav-list">
-            <ul>
-                <li><a href="/browse">Browse</a></li>
-                <li><a href="/musicplayer">MusicPlayer</a></li>
-                <li><a href="/uploadmusic">Upload Music</a></li>
-                <li><a href="/">Logout</a></li>
-            </ul>
+<nav class="nav-bar">
+    <div class="nav-logo">
+        <a href="/dashboard"><img src="/assets/home.png"></a>
+    </div>
+    <div class="nav-list">
+        <ul>
+            <li><a href="/browse">Browse</a></li>
+            <li><a href="/album">Albums</a></li>
+            <li><a href="/musicplayer">MusicPlayer</a></li>
+            <li><a href="/">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="account">
+    <div class="left-container">
+        <div class="user-pic">
+            <img src="/assets/UHseal.png">
         </div>
-    </nav>
-    <div class="main">
-        <center>
-            <div class="account-title">
-                    <h1>Update Info</h1>
-            </div>
+        <h2><%= userfname%> <%= userlname%></h2>
+        <h3>Joined: <%= userdate.slice(1)%></h3>
+    </div>
 
-            <form class="form-z" action="/users/account" method="POST">
+    <div class="right-container">
+        <h1>Update Info</h1>
+
+        <center>
+        <div class="form-container">
+            <form action="/users/account" method="POST">
                 <div class="errors">
                     <ul>
                         <% if(messages.success_msg) { %>
-                            <li><%= messages.success_msg %></li>
+                        <li><%= messages.success_msg %></li>
                         <% } %>
                     </ul>
                     <ul>
                         <% if(messages.error) { %>
-                            <li><%= messages.error %></li>
+                        <li><%= messages.error %></li>
                         <% } %>
                     </ul>
                 </div>
 
                 <div>
-                    <h2 class="userInfo"><%= userfname%></h2>
+                    <h2>First Name</h2>
                     <input
-                    type="text"
-                    id="fname"
-                    name="fname"
-                    placeholder="Update First Name"
+                        type="text"
+                        id="fname"
+                        name="fname"
+                        placeholder=<%= userfname%>
                     required>
                 </div>
 
                 <div>
-                    <h2 class="userInfo"><%= userlname%></h2>
+                    <h2>Last Name</h2>
                     <input
-                    type="text"
-                    id="lname"
-                    name="lname"
-                    placeholder="Update Last Name"
+                        type="text"
+                        id="lname"
+                        name="lname"
+                        placeholder=<%= userlname%>
                     required>
                 </div>
 
                 <div>
-                    <h2 class="userInfo"><%= useremail%></h2>
+                    <h2>Email</h2>
                     <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Update Email"
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder=<%= useremail%>
                     required>
                 </div>
-                
+
                 <div>
                     <input
-                    type="submit"
-                    value="Submit"
-                    class="auth_button login_button">
+                        type="submit"
+                        value="Submit"
+                        class="auth_button login_button">
                 </div>
             </form>
+        </div>
         </center>
     </div>
+</div>
 </body>
 </html>
