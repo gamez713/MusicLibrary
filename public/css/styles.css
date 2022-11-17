@@ -141,7 +141,7 @@ Login & Register
     position:absolute;
     opacity: 0.25;
 }
-form {
+.form-z {
     width: 500px;
     height: 400px;
     position:relative;
@@ -207,6 +207,11 @@ Dashboard
     float: right;
 }
 
+.form-a{
+    gap: 10px;
+    margin: 10px;
+}
+
 /******
 Account
 ******/
@@ -245,12 +250,35 @@ Account
     color: white;
     padding: 5px;
 }
-.form-container h2 {
-    text-align: left;
-    color: white;
-    padding-left: 150px;
+.form-container {
+    width: 280px;
+    height: 380px;
+    padding-top: 30px;
 }
+.form-container h2 {
+    color: white;
+    text-align: left;
+    padding-left: 30px;
+}
+/******
+Add Songs
+******/
+.song-information{
 
-/********
-Dashboard
-********/
+    color: antiquewhite;
+}
+.song-button{
+    background-color: darkgray;
+
+    border: none;
+    color: black;
+    margin: 5px;
+    height: 45px;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid gray;
+}
