@@ -11,7 +11,7 @@ route.get("/", checkNotAuthenticated, async (req, res) => {
 
 route.post("/", async (req, res) => {
     let { album_from, album_to, genre, rating, playcount_from, playcount_to, user} = req.body;
-    
+
 });
 
 route.get("/", function(req, res, next) {

@@ -12,8 +12,6 @@ route.get("/", checkNotAuthenticated, async (req, res) => {
         const playlist_count = await pool.query("SELECT COUNT(playlist.playlist_name) FROM playlist WHERE id =" + x)
         //gets the playlist_names sorted by date created.
         const playlist_names = await pool.query("SELECT playlist.playlist_name FROM playlist WHERE id = " + x + " ORDER BY date_created")
-        //Artist song count when upload for trigger
-        const artist_count = await pool.query("SELECT concat(artistsongcount.artist_f_name, ' ' ,artistsongcount.artist_l_name, ' has uploaded ', artistsongcount.totalcount + 1, ' songs') trigger FROM artistsongcount ORDER BY dateadded desc, totalcount desc fetch first 1 row only")
         for (let b = 0; b < playlist_count.rows[0].count; b++) {
             //Song count of a playlist
             const songs_count = await pool.query("SELECT COUNT(songs.song_name) FROM playlist, playlist_songs, songs WHERE id = "+ x + " AND playlist.playlist_id = playlist_songs.playlist_id AND songs.song_id = playlist_songs.song_id AND playlist_name ="+ "'"+ playlist_names.rows[b].playlist_name + "'" )
@@ -28,11 +26,13 @@ route.get("/", checkNotAuthenticated, async (req, res) => {
         }
 
         if (req.user.musician == true) {
+            var dashboard = 'dashboard'
             console.log("Musician Page")
-            res.render("dashboard", {user: req.user.fname, test: dict, test2: dict2, playlist: playlist_names.rows, pcount: playlist_count.rows[0].count, artist: artist_count.rows});
+            res.render(dashboard, {user: req.user.fname, test: dict, test2: dict2, playlist: playlist_names.rows, pcount: playlist_count.rows[0].count});
         } else {
+            var dashboard = 'dashboard2'
             console.log("Listener Page")
-            res.render("dashboard2", {user: req.user.fname, test: dict, test2: dict2, playlist: playlist_names.rows, pcount: playlist_count.rows[0].count});
+            res.render(dashboard, {user: req.user.fname, test: dict, test2: dict2, playlist: playlist_names.rows, pcount: playlist_count.rows[0].count});
         }
 
         
