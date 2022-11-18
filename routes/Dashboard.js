@@ -68,11 +68,17 @@ route.post("/", async (req, res) => {
     let { playlist_name, playlist_name2, playlist_name3, song_name, playlist_name4, song_name2, playlist_name5 } = req.body;
     if(typeof playlist_name !== 'undefined'){
         try {
-            await pool.query(
-                `INSERT INTO playlist (id, playlist_id, playlist_name)
-                VALUES ($1, $2, $3)`, 
-                [x[0], await pid_generator() , playlist_name])
-            res.redirect("/dashboard")
+            var duplicate = await pool.query("SELECT playlist_name FROM playlist WHERE playlist_name= "+"'"+playlist_name+"'"+" AND id= "+x)
+            if(duplicate.rows.length == 0)
+            {
+                await pool.query(
+                    `INSERT INTO playlist (id, playlist_id, playlist_name)
+                    VALUES ($1, $2, $3)`, 
+                    [x[0], await pid_generator() , playlist_name])
+                res.redirect("/dashboard")
+            }else{
+                res.redirect("/dashboard")
+            }
         } catch (e) {
             console.log(e);
             res.redirect("/dashboard");
