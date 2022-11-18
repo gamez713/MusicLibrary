@@ -11,10 +11,12 @@
     <nav class="nav-bar">
         <div class="nav-user">
             <h1>Hello, <%= user.charAt(0).toUpperCase() + user.slice(1) %></h1>
+            <a href="/addsong">Upload Music</a>
         </div>      
         <div class="nav-list">
             <ul>
                 <li><a href="/browse">Browse</a></li>
+                <li><a href="/insights">Insights</a></li>
                 <li><a href="/musicplayer">MusicPlayer</a></li>
                 <li><a href="/account">Account</a></li>
                 <li><a href="/">Logout</a></li>
@@ -23,7 +25,7 @@
     </nav>
 
     <div class="big-container">
-        <form class="form-a" action="/dashboard" method="POST">
+        <form class="form-a" action="/dashMusician" method="POST">
             <input
             type="text"
             id="playlist_name"
@@ -38,7 +40,7 @@
             </div>
         </form>
 
-        <form class="form-a" action="/dashboard" method="POST">
+        <form class="form-a" action="/dashMusician" method="POST">
             <input
             type="text"
             id="playlist_name2"
@@ -53,7 +55,7 @@
             </div>
         </form>
 
-        <form class="form-a" action="/dashboard" method="POST">
+        <form class="form-a" action="/dashMusician" method="POST">
             <div>
                 <input
                 type="text"
@@ -78,7 +80,7 @@
             </div>
         </form>
 
-        <form class="form-a" action="/dashboard" method="POST">
+        <form class="form-a" action="/dashMusician" method="POST">
             <div>
                 <input
                 type="text"
@@ -103,13 +105,23 @@
             </div>
         </form>
 
+<!--
+        <p> Select one from the given options:
+            <select id="select1">
+                <option value="free">Free</option>
+                <option value="basic">Basic</option>
+                <option value="premium">Premium</option>
+            </select>
+        </p>
+-->
+
     </div>
     <h2 class="text-color"><%= user.charAt(0).toUpperCase() + user.slice(1) %> Playlists</h2>
         <% for(var i = 0; i < pcount; i++) { %>
             <div class="big-container">
             <table class="tablecontainer"> 
             <th class="playlist-header">
-                <form action="/dashboard" method="POST">
+                <form action="/dashMusician" method="POST">
                     <input
                     type="submit"
                     value="<%= playlist[i].playlist_name %>"

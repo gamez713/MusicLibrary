@@ -25,17 +25,20 @@ route.get("/", checkNotAuthenticated, async (req, res) => {
             }
         }
 
-        if (req.user.musician == true) {
-            var dashboard = 'dashboard'
-            console.log("Musician Page")
+        // Dashboard Type
+        if (req.user.role == "admin") {
+            var dashboard = 'dashAdmin'
+            res.render(dashboard, {user: req.user.fname});
+        } 
+        else if (req.user.role == "musician"){
+            var dashboard = 'dashMusician'
             res.render(dashboard, {user: req.user.fname, test: dict, test2: dict2, playlist: playlist_names.rows, pcount: playlist_count.rows[0].count});
-        } else {
-            var dashboard = 'dashboard2'
-            console.log("Listener Page")
+        } 
+        else if (req.user.role == "listener"){
+            var dashboard = 'dashListener'
             res.render(dashboard, {user: req.user.fname, test: dict, test2: dict2, playlist: playlist_names.rows, pcount: playlist_count.rows[0].count});
         }
 
-        
     } catch (e) {
             console.log(e);
             res.send("There was an error");
@@ -72,10 +75,10 @@ route.post("/", async (req, res) => {
                 `INSERT INTO playlist (id, playlist_id, playlist_name)
                 VALUES ($1, $2, $3)`, 
                 [x[0], await pid_generator() , playlist_name])
-            res.redirect("/dashboard")
+            res.redirect("/dashMusician")
         } catch (e) {
             console.log(e);
-            res.redirect("/dashboard");
+            res.redirect("/dashMusician");
         }
     }
     if(typeof playlist_name2 !== 'undefined'){
@@ -84,10 +87,10 @@ route.post("/", async (req, res) => {
                 'DELETE FROM playlist_songs WHERE playlist_id in (SELECT playlist_id FROM playlist WHERE playlist_name = '+"'"+playlist_name2+"'"+' AND id ='+ x +');')
             await pool.query(
                 'DELETE FROM playlist WHERE playlist_name= '+"'"+playlist_name2+"'"+' AND id ='+ x)
-                res.redirect("/dashboard")
+                res.redirect("/dashMusician")
         } catch (e) {
             console.log(e);
-            res.redirect("/dashboard");
+            res.redirect("/dashMusician");
         }
     }
     if(typeof playlist_name3 !== 'undefined'){
@@ -96,10 +99,10 @@ route.post("/", async (req, res) => {
             var playlistID = await pool.query('SELECT playlist_id FROM playlist WHERE playlist_name = '+"'"+ playlist_name3 +"'"+' AND id='+ x)
             
             await pool.query('INSERT INTO playlist_songs VALUES ('+"'"+playlistID.rows[0].playlist_id+"', "+"'"+songID.rows[0].song_id+"'"+')')
-            res.redirect("/dashboard")
+            res.redirect("/dashMusician")
         } catch (e) {
             console.log(e);
-            res.redirect("/dashboard");
+            res.redirect("/dashMusician");
         }
     }
     if(typeof playlist_name4 !== 'undefined'){
@@ -108,10 +111,10 @@ route.post("/", async (req, res) => {
             var playlistID = await pool.query('SELECT playlist_id FROM playlist WHERE playlist_name = '+"'"+ playlist_name4 +"'"+' AND id='+ x)
             
             await pool.query('DELETE FROM playlist_songs WHERE playlist_id= '+"'"+playlistID.rows[0].playlist_id+"' AND song_id = "+"'"+songID.rows[0].song_id+"'"+'')
-            res.redirect("/dashboard")
+            res.redirect("/dashMusician")
         } catch (e) {
             console.log(e);
-            res.redirect("/dashboard");
+            res.redirect("/dashMusician");
         }
     }
     if(typeof playlist_name5 !== 'undefined'){
@@ -125,7 +128,7 @@ route.post("/", async (req, res) => {
             res.render("musicplayer", {songs: songs.rows, scount: songs_count.rows[0].count});
         } catch (e) {
             console.log(e);
-            res.redirect("/dashboard");
+            res.redirect("/dashMusician");
         }
     }
 });
