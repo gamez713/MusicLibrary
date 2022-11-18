@@ -114,20 +114,6 @@
             </select>
         </p>
 -->
-<script>
-    //alert(document.referrer);
-    console.log(document.referrer);
-    let artist = '<%- JSON.stringify(artist) %>'
-    //let myObj = JSON.stringify(track);
-    let artist_name = JSON.parse(artist)
-    console.log(artist)
-    if(document.referrer == 'http://localhost:4000/addsong') {
-        window.onload = () => {
-      //alert(window.history.previous.href);
-        alert(artist);
-    }
-}
-</script>
 
     </div>
     <h2 class="text-color"><%= user.charAt(0).toUpperCase() + user.slice(1) %> Playlists</h2>
