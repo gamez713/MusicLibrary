@@ -24,13 +24,15 @@
     </nav>
 
     <div class="big-container">
-        <form class="form-b" action="/insights method="POST">
+        <form class="form-b" action="/insights" method="POST">
           <div>
             <p class="text-color">Album Created Date From</p>
             <input
             type="date"
             id="album_from"
-            name="album_from">
+            name="album_from"
+            placeholder="Default: 01/01/1950">
+            <p class="text-color">Default: 01/01/1950</p>
           </div>
           <div>
             <p class="text-color">Album Created Date To</p>
@@ -38,39 +40,45 @@
             type="date"
             id="album_to"
             name="album_to">
+            <p class="text-color">Default: Current Date</p>
           </div>
           <div>
             <p class="text-color">Genre Type</p>
-            <input
-            type="text"
-            id="genre"
-            name="genre">
+            <select id="genre" name="genre">
+              <option value=0>Any Genre</option>
+              <option value="pop">pop</option>
+              <option value="r&b">r&b</option>
+              <option value="hip hop">hip hop</option>
+              <option value="pop rock">pop rock</option>
+            </select>
           </div>
           <div>
-            <p class="text-color">Rating</p>
+            <p class="text-color">Rating From</p>
             <input
             type="text"
-            id="rating"
-            name="rating">
+            id="rating_from"
+            name="rating_from"
+            placeholder="Min:0">
+            <p class="text-color">Rating To</p>
+            <input
+            type="text"
+            id="rating_to"
+            name="rating_to"
+            placeholder="Max:5">
           </div>
           <div>
             <p class="text-color">Playcount From</p>
             <input
             type="text"
             id="playcount_from"
-            name="playcount_from">
+            name="playcount_from"
+            placeholder="Default: 0">
             <p class="text-color">Playcount To</p>
             <input
             type="text"
             id="playcount_to"
-            name="playcount_to">
-          </div>
-          <div>
-            <p class="text-color">User Name</p>
-            <input
-            type="text"
-            id="user"
-            name="user">
+            name="playcount_to"
+            placeholder="Default: Max">
           </div>
             <div>
                 <input
@@ -80,37 +88,50 @@
             </div>
         </form>
       </div>
-<section>
-    <h1 class="h1-header">Reports</h1>
+
+
+    <section class="section-f">
+    <h1 class="h1-f">Reports</h1>
     <div class="tbl-header">
-      <table class="table-table" cellpadding="0" cellspacing="0" border="0">
+      <table class="table-f" cellpadding="0" cellspacing="0" border="0">
         <thead>
           <tr>
-            <th class="th-table">Song</th>
-            <th class="th-table">Album</th>
-            <th class="th-table">Genre</th>
-            <th class="th-table">Rating</th>
-            <th class="th-table">Playcount</th>
+            <th class="th-f">Ablum Create Date</th>
+            <th class="th-f">Album</th>
+            <th class="th-f">Song</th>
+            <th class="th-f">Song Genre</th>
+            <th class="th-f">Total Play Count</th>
+            <th class="th-f">Average Rating</th>
           </tr>
         </thead>
       </table>
     </div>
     <div class="tbl-content">
-      <table class="table-table" cellpadding="0" cellspacing="0" border="0">
+      <table class="table-f" cellpadding="0" cellspacing="0" border="0">
         <tbody>
+          <%
+          if(z.length!=0){
+          var i=0;
+          z.forEach(function(data){
+          %>
           <tr>
-            <td class="td-table">AAC</td>
-            <td class="td-table">AUSTRALIAN COMPANY </td>
-            <td class="td-table">$1.38</td>
-            <td class="td-table">+2.01</td>
-            <td class="td-table">-0.36%</td>
+            <td class="td-f"><%=data.date_created %></td>
+            <td class="td-f"><%=data.album_name %></td>
+            <td class="td-f"><%=data.song_name %></td>
+            <td class="td-f"><%=data.song_genre %></td>
+            <td class="td-f"><%=data.total_playcount %></td>
+            <td class="td-f"><%=data.avgrating %></td>
           </tr>
+          <%  i++; }) %>
+          <% } else{ %>
           <tr>
-            <td class="td-table" colspan="7">No Data Found</td>
+            <td class="td-f" colspan="5">No Data Found</td>
           </tr>
+          <% } %>
         </tbody>
       </table>
     </div>
   </section>
+
 </body>
 </html>
