@@ -123,7 +123,7 @@ route.post("/", async (req, res) => {
     if(typeof playlist_name5 !== 'undefined'){
         try {
             const songs_count = await pool.query("SELECT COUNT(playlist_songs.playlist_id) FROM playlist_songs, playlist WHERE playlist.playlist_name= "+"'"+playlist_name5+"'"+" AND playlist_songs.playlist_id = playlist.playlist_id AND id="+x)
-            const songs = await pool.query("SELECT songs.song_name AS name, songs.artist_f_name AS artist, songs.artist_l_name AS lname, song_link.song_img AS image, song_link.song_link AS path FROM playlist, playlist_songs, songs, song_link WHERE id = "+ "'"+ x + "'" + " AND playlist.playlist_id = playlist_songs.playlist_id AND songs.song_id = playlist_songs.song_id  AND songs.song_id = song_link.song_id AND playlist_name = "+ "'"+ playlist_name5 +"'")
+            const songs = await pool.query("SELECT songs.song_name AS name, songs.artist_f_name AS artist, songs.artist_l_name AS lname, song_link.song_link AS path FROM playlist, playlist_songs, songs, song_link WHERE id = "+ "'"+ x + "'" + " AND playlist.playlist_id = playlist_songs.playlist_id AND songs.song_id = playlist_songs.song_id  AND songs.song_id = song_link.song_id AND playlist_name = "+ "'"+ playlist_name5 +"'")
             for(let i=0; i<songs_count.rows[0].count; i++){
                 Q = songs.rows[i].artist + " " + songs.rows[i].lname
                 songs.rows[i].artist = Q
