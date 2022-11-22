@@ -36,7 +36,7 @@ app.use("/addalbum", addalbumRoute);
 app.use("/addsong", addsongRoute);
 app.use("/browse", browseRoute);
 app.use("/insights", insightsRoute);
-app.use("/dashboard", dashboardRoute);
+app.use("/dashMusician", dashboardRoute);
 app.use("/login", loginRoute);
 app.use("/musicplayer", musicplayerRoute);
 app.use("/register", registerRoute);

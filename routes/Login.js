@@ -8,7 +8,7 @@ route.get("/", (req, res) => {
 });
 
 route.post("/", passport.authenticate('local', {
-    successRedirect: "/dashboard",
+    successRedirect: "/dashMusician",
     failureRedirect: "/login",
     failureFlash: true
 }));
