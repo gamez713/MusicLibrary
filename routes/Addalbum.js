@@ -1,8 +1,8 @@
 const express = require("express");
 const route = express.Router();
-const { checkNotAuthenticated } = require("../controllers/users-auth");
+const { checkAuth } = require("../helpers/userAuth");
 
-route.get("/", checkNotAuthenticated, (req, res) => {
+route.get("/", (req, res) => {
     res.render("addalbum");
 });
 

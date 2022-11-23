@@ -1,10 +1,9 @@
 const express = require("express");
 const route = express.Router();
 const { pool } = require("../dbConfig");
-const { checkNotAuthenticated } = require("../controllers/users-auth");
 const { appendFile } = require("fs");
 
-route.get("/", checkNotAuthenticated, async(req, res) => {
+route.get("/", async(req, res) => {
 
 try {
   //counts number of playlist from specified user.
