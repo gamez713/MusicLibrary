@@ -3,8 +3,6 @@ const route = express.Router();
 const { checkAuth } = require("../helpers/userAuth");
 const { pool } = require("../dbConfig");
 
-
-
 route.get("/", async (req, res) => {
     let empty = []
     try{
