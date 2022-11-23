@@ -1,17 +1,17 @@
 const express = require("express");
 const route = express.Router();
-const { checkNotAuthenticated } = require("../controllers/users-auth");
+const { checkAuth } = require("../helpers/userAuth");
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var upload = multer();
-const { uploadSong } = require("../controllers/UploadFxns");
-const passport = require("passport");
+const { uploadSong } = require("../helpers/UploadFxns");
 
 // for parsing multipart/form-data
 var upload = multer({ dest: './upload'});
 var type = upload.single('song_file');
 console.log(type);
-route.get("/", checkNotAuthenticated, (req, res) => {
+
+route.get("/", (req, res) => {
     res.render("addsong");
 });
 

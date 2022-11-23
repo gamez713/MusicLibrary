@@ -2,7 +2,6 @@ const express = require("express");
 const route = express.Router();
 const bcrypt = require("bcrypt");
 const { pool } = require("../dbConfig");
-const { checkAuthenticated } = require("../controllers/users-auth");
 
 route.get("/", (req, res) => {
     res.render("register");

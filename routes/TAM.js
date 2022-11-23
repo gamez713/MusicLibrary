@@ -1,10 +1,9 @@
 const express = require("express");
 const route = express.Router();
 const { pool } = require("../dbConfig");
-const { checkNotAuthenticated } = require("../controllers/users-auth");
-const { json } = require("express/lib/response");
+const { checkAuth } = require("../helpers/userAuth");
 
-route.get("/", checkNotAuthenticated, async (req, res) => {
+route.get("/", async (req, res) => {
     try {
         const dict = {}
         const dict2 = {}
@@ -26,18 +25,18 @@ route.get("/", checkNotAuthenticated, async (req, res) => {
         }
 
         // Dashboard Type
-        if (req.user.role == "admin") {
-            var dashboard = 'dashAdmin'
-            res.render(dashboard, {user: req.user.fname});
-        } 
-        else if (req.user.role == "musician"){
-            var dashboard = 'dashMusician'
-            res.render(dashboard, {user: req.user.fname, test: dict, test2: dict2, playlist: playlist_names.rows, pcount: playlist_count.rows[0].count});
-        } 
-        else if (req.user.role == "listener"){
-            var dashboard = 'dashListener'
-            res.render(dashboard, {user: req.user.fname, test: dict, test2: dict2, playlist: playlist_names.rows, pcount: playlist_count.rows[0].count});
-        }
+        // if (req.user.role == "admin") {
+        //     var dashboard = 'dashAdmin'
+        //     res.render(dashboard, {user: req.user.fname});
+        // } 
+        // else if (req.user.role == "musician"){
+        //     var dashboard = 'dashMusician'
+        //     res.render(dashboard, {user: req.user.fname, test: dict, test2: dict2, playlist: playlist_names.rows, pcount: playlist_count.rows[0].count});
+        // } 
+        // else if (req.user.role == "listener"){
+        //     var dashboard = 'dashListener'
+        //     res.render(dashboard, {user: req.user.fname, test: dict, test2: dict2, playlist: playlist_names.rows, pcount: playlist_count.rows[0].count});
+        // }
 
     } catch (e) {
             console.log(e);

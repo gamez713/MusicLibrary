@@ -1,8 +1,7 @@
 var express = require('express');
 var route = express.Router();
 const { pool } = require("../dbConfig");
-const { checkNotAuthenticated } = require("../controllers/users-auth");
-
+const { checkAuth } = require("../helpers/userAuth");
 
 // another routes also appear here
 // this script to fetch data from MySQL databse table
@@ -22,7 +21,7 @@ route.get('/', function(req, res, next) {
   });
 });
 
-route.get("/", checkNotAuthenticated, (req, res) => {
+route.get("/", (req, res) => {
     res.render("usersongs");
 });
 

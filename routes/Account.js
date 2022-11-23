@@ -1,9 +1,9 @@
 const express = require("express");
 const route = express.Router();
 const { pool } = require("../dbConfig");
-const { checkNotAuthenticated } = require("../controllers/users-auth");
+const { checkAuth } = require("../helpers/userAuth");
 
-route.get("/", checkNotAuthenticated, (req, res) => {
+route.get("/", (req, res) => {
     let date = JSON.stringify(req.user.date_created)
         month = date.slice(5,8)
         day = date.slice(9,11)
