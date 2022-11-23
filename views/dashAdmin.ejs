@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head>1
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
     <title>Admin Dashboard</title>
 </head>
 <body>
-    <center>
-        <h1>HELLO THIS IS THE ADMIN DASHBOARD,</h1>
-        <h1>SUCH EMPTY.</h1>
-    </center>
-    
+    <nav class="nav-bar">
+        <div class="nav-user">
+            <h1>Admin: <%= user.charAt(0).toUpperCase() + user.slice(1) %></h1>
+            <a href="/addsong">Upload Music</a>
+        </div>      
+        <div class="nav-list">
+            <ul>
+                <li><a href="/browse">Browse</a></li>
+                <li><a href="/insights">Insights</a></li>
+                <li><a href="/musicplayer">MusicPlayer</a></li>
+                <li><a href="/account">Account</a></li>
+                <li><a href="/">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
 </body>
 </html>
