@@ -1,17 +1,17 @@
 const express = require("express");
 const route = express.Router();
 const { pool } = require("../dbConfig");
-const { checkNotAuthenticated } = require("../controllers/users-auth");
-const { json } = require("express/lib/response");
+const { checkAuth } = require("../helpers/userAuth");
 
-route.get("/", checkNotAuthenticated, async (req, res) => {
-    try {
-        const dict = {}
-        const dict2 = {}
-        //counts number of playlist from specified user.
-        const playlist_count = await pool.query("SELECT COUNT(playlist.playlist_name) FROM playlist WHERE id =" + x)
-        //gets the playlist_names sorted by date created.
-        const playlist_names = await pool.query("SELECT playlist.playlist_name FROM playlist WHERE id = " + x + " ORDER BY date_created")
+route.get("/", async (req, res) => {
+  
+  try {
+    const dict = {}
+    const dict2 = {}
+    //counts number of playlist from specified user.
+    const playlist_count = await pool.query("SELECT COUNT(playlist.playlist_name) FROM playlist WHERE id =" + x)
+    //gets the playlist_names sorted by date created.
+    const playlist_names = await pool.query("SELECT playlist.playlist_name FROM playlist WHERE id = " + x + " ORDER BY date_created")
         for (let b = 0; b < playlist_count.rows[0].count; b++) {
             //Song count of a playlist
             const songs_count = await pool.query("SELECT COUNT(songs.song_name) FROM playlist, playlist_songs, songs WHERE id = "+ x + " AND playlist.playlist_id = playlist_songs.playlist_id AND songs.song_id = playlist_songs.song_id AND playlist_name ="+ "'"+ playlist_names.rows[b].playlist_name + "'" )
@@ -24,27 +24,13 @@ route.get("/", checkNotAuthenticated, async (req, res) => {
                 dict[b].push(songs.rows[g].song_name)
             }
         }
-
-        // Dashboard Type
-        if (req.user.role == "admin") {
-            var dashboard = 'dashAdmin'
-            res.render(dashboard, {user: req.user.fname});
-        } 
-        else if (req.user.role == "musician"){
-            var dashboard = 'dashMusician'
-            res.render(dashboard, {user: req.user.fname, test: dict, test2: dict2, playlist: playlist_names.rows, pcount: playlist_count.rows[0].count});
-        } 
-        else if (req.user.role == "listener"){
-            var dashboard = 'dashListener'
-            res.render(dashboard, {user: req.user.fname, test: dict, test2: dict2, playlist: playlist_names.rows, pcount: playlist_count.rows[0].count});
-        }
-
+        dash = "/dashMusician";
+        res.render("dashMusician", {user: req.user.fname, test: dict, test2: dict2, playlist: playlist_names.rows, pcount: playlist_count.rows[0].count, dashType: dash});
     } catch (e) {
             console.log(e);
             res.send("There was an error");
         }
 });
-
 
 async function pid_generator(){
     //Playlist ID generator
@@ -139,9 +125,6 @@ route.post("/", async (req, res) => {
         }
     }
 });
-
-
-
 
 route.get("/", function(req, res, next) {
     req.logout(function(err) {

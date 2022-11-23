@@ -1,9 +1,9 @@
 const express = require("express");
 const route = express.Router();
-const { checkNotAuthenticated } = require("../controllers/users-auth");
+const { checkAuth } = require("../helpers/userAuth");
 const { pool } = require("../dbConfig");
 
-route.get("/", checkNotAuthenticated, (req, res) => {
+route.get("/", (req, res) => {
     let empty = []
     try{
         res.render("browse", {info: empty});
@@ -30,6 +30,7 @@ route.post("/", async (req, res) => {
         console.log(e);
         res.redirect("browse");
     }
+
 });
 
 module.exports = route;

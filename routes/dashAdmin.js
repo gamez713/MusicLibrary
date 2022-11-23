@@ -3,7 +3,7 @@ const route = express.Router();
 const { checkAuth } = require("../helpers/userAuth");
 
 route.get("/", (req, res) => {
-    res.render("addalbum");
+    res.render("dashAdmin");
 });
 
 module.exports = route;

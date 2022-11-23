@@ -1,11 +1,11 @@
 const express = require("express");
 const route = express.Router();
-const { checkNotAuthenticated } = require("../controllers/users-auth");
+const { checkAuth } = require("../helpers/userAuth");
 const { pool } = require("../dbConfig");
 
 
 
-route.get("/", checkNotAuthenticated, async (req, res) => {
+route.get("/", async (req, res) => {
     let empty = []
     try{
         res.render("insights", {z: empty});
