@@ -47,6 +47,7 @@ route.get("/", checkNotAuthenticated, async (req, res) => {
 
 
 async function pid_generator(){
+    //Playlist ID generator
     var playlist_id_result = 'P_';
     var characters = "1234567890"
     for ( var d = 0; d < 8; d++ ) {

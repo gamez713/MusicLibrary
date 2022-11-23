@@ -13,17 +13,54 @@
             <a href="/dashMusician"><img src="/assets/home.png"></a>
         </div>
         <div class="search">
-            <input type="text" placeholder="Search" />
+            <form action="/browse" method = "POST">
+                <input type="search" id="search" name="search" placeholder="Search" />
+              </form>
         </div>  
         <div class="nav-list">
             <ul>
                 <li><a href="/browse">Browse</a></li>
-                <li><a href="/insights">Insights</a></li>
                 <li><a href="/musicplayer">MusicPlayer</a></li>
                 <li><a href="/account">Account</a></li>
                 <li><a href="/">Logout</a></li>
             </ul>
         </div>
-    </nav>    
+    </nav>
+<section class="section-f">
+    <div class="tbl-header">
+        <table class="table-f" cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <th class="th-f">Song Name</th>
+              <th class="th-f">Genre</th>
+              <th class="th-f">Artist Name</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    <div>
+        <table class="table-f" cellpadding="0" cellspacing="0" border="0">
+          <tbody>    
+            <%
+            if(info.length!=0){
+            var i=0;
+            info.forEach(function(data){
+            %>
+            <tr>
+            <td class="td-f"><%=data.song_name %></td>
+            <td class="td-f"><%=data.song_genre %></td>
+            <td class="td-f"><%=data.artist_f_name + " " + data.artist_l_name%></td>
+            </tr>
+            <%  i++; }) %>
+            <% } else{ %>
+            <tr>
+            <td class="td-f">No Data Found</td>
+            </tr>
+            <% } %>
+        </tbody>
+        </table>
+    </div>
+</section>
+
 </body>
 </html>

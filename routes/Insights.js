@@ -16,7 +16,7 @@ route.get("/", checkNotAuthenticated, async (req, res) => {
 });
 
 route.post("/", async (req, res) => {
-    let { album_from, album_to, genre, rating_from, rating_to, playcount_from, playcount_to} = req.body;
+    let { album_from, album_to, genre, rating_from, rating_to, playcount_from, playcount_to, reset} = req.body;
     
     if(album_from.length == 0)
     {   //If there is no from date, set date to default
@@ -85,7 +85,7 @@ route.post("/", async (req, res) => {
         res.render("insights", {z: word.rows})
     } catch (e) {
         console.log(e);
-        res.render("insights");
+        res.render("insights", {z: empty});
     }
 
 });
