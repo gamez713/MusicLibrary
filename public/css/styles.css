@@ -7,8 +7,6 @@ Global Styles
 }
 body{
     background-color: rgb(21, 21, 21);
-    padding: 0;
-    margin: 0;
 }
 .auth_button {
     background-color: #252525;
@@ -39,6 +37,7 @@ body{
 .errors ul {
     list-style: none;
 }
+
 /********
 Nav Bar
 *********/
@@ -82,7 +81,6 @@ Nav Bar
     display: block;
     color: antiquewhite;
     font-size: 20px;
-    
 }
 .nav-list li a:hover {
     text-decoration: underline;
@@ -103,7 +101,6 @@ Home Page
 .bottom {
     position: relative;
     text-align: center;
-    
 }
 .container {
     width: 200px;
@@ -219,11 +216,9 @@ Dashboard
     margin: 10px;
 }
 
-
 /********
 Insights
 *********/
-
 .h1-f{
     font-size: 30px;
     color: #fff;
@@ -231,21 +226,20 @@ Insights
     font-weight: 300;
     text-align: center;
     margin-bottom: 15px;
-  }
+}
 .table-f {
     width:100%;
     table-layout: fixed;
-  }
+}
 .tbl-header {
     background-color: rgba(255,255,255,0.3);
-   }
+}
 .tbl-content {
     height:300px;
     overflow-x:auto;
     margin-top: 0px;
     border: 1px solid rgba(255,255,255,0.3);
-  }
-
+}
 .th-f {
     padding: 20px 15px;
     text-align: left;
@@ -253,7 +247,7 @@ Insights
     font-size: 15px;
     color: #fff;
     text-transform: uppercase;
-  }
+}
 .td-f { 
     padding: 15px;
     text-align: left;
@@ -262,8 +256,7 @@ Insights
     font-size: 20px;
     color: #fff;
     border-bottom: solid 1px rgba(255,255,255,0.1);
-  }
-
+}
 .section-f {
     margin: 50px;
   }
@@ -316,16 +309,15 @@ Account
     text-align: left;
     padding-left: 30px;
 }
+
 /******
 Add Songs
 ******/
 .song-information{
-
     color: antiquewhite;
 }
 .song-button{
     background-color: darkgray;
-
     border: none;
     color: black;
     margin: 5px;
