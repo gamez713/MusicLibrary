@@ -249,6 +249,10 @@ Insights
     text-transform: uppercase;
 }
 .td-f { 
+    max-width: 350px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     padding: 15px;
     text-align: left;
     vertical-align:middle;
@@ -257,6 +261,22 @@ Insights
     color: #fff;
     border-bottom: solid 1px rgba(255,255,255,0.1);
 }
+
+/*Special for Admin*/
+.td-s { 
+    max-width: 350px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    vertical-align:middle;
+    font-weight: 300;
+    font-size: 15px;
+    color: #fff;
+    border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+
+
 .section-f {
     margin: 50px;
   }

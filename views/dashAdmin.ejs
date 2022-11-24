@@ -23,7 +23,115 @@
             </ul>
         </div>
     </nav>
+    <div class="big-container">
+        <form class="form-b" action="/dashAdmin" method="POST">
+          <div>
+            <p class="text-color">User Created Date From</p>
+            <input
+            type="date"
+            id="user_from"
+            name="user_from"
+            placeholder="Default: 01/01/1950">
+            <p class="text-color">Default: 01/01/1950</p>
+          </div>
+          <div>
+            <p class="text-color">User Created Date To</p>
+            <input
+            type="date"
+            id="user_to"
+            name="user_to">
+            <p class="text-color">Default: Current Date</p>
+          </div>
+          <div>
+            <p class="text-color">Role Type</p>
+            <select id="role" name="role">
+              <option value=0>Any Role</option>
+              <option value="musician">musician</option>
+              <option value="listener">listener</option>
+              <option value="admin">admin</option>
+            </select>
+          </div>
+          <div>
+            <p class="text-color">Rating From</p>
+            <input
+            type="text"
+            id="rating_from"
+            name="rating_from"
+            placeholder="Default: 0">
+            <p class="text-color">Rating To</p>
+            <input
+            type="text"
+            id="rating_to"
+            name="rating_to"
+            placeholder="Default: Max">
+          </div>
+          <div>
+            <p class="text-color">Playcount From</p>
+            <input
+            type="text"
+            id="playcount_from"
+            name="playcount_from"
+            placeholder="Default: 0">
+            <p class="text-color">Playcount To</p>
+            <input
+            type="text"
+            id="playcount_to"
+            name="playcount_to"
+            placeholder="Default: Max">
+          </div>
+          <div>
+            <input type="reset" value="Clear Form" class="auth_button login_button">
+            <input
+            type="submit"
+            value="View Report"
+            class="auth_button login_button">
+          </div>
+        </form>
+      </div>
 
+      <section class="section-f">
+        <h1 class="h1-f">Reports</h1>
+        <div class="tbl-header">
+          <table class="table-f" cellpadding="0" cellspacing="0" border="0">
+            <thead>
+              <tr>
+                <th class="th-f">User Create Date</th>
+                <th class="th-f">User</th>
+                <th class="th-f">Email</th>
+                <th class="th-f">Role</th>
+                <th class="th-f">Total Play Count</th>
+                <th class="th-f"># of Ratings</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="tbl-content">
+          <table class="table-f" cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+              <%
+              if(z.length!=0){
+              var i=0;
+              z.forEach(function(data){
+              %>
+              <tr>
+                <td class="td-f"><%=data.date_created %></td>
+                <td class="td-f"><%=data.fname + " " + data.lname %></td>
+                <td class="td-s"><%=data.email %></td>
+                <td class="td-f"><%=data.role %></td>
+                <td class="td-f"><%=data.playcount %></td>
+                <td class="td-f"><%=data.rating %></td>
+              </tr>
+              <%  i++; }) %>
+              <% } else{ %>
+              <tr>
+                <td class="td-f" colspan="5">No Data Found</td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-color">Total Number of Users: <%= z.length %></p>
+      </section>
 
 </body>
 </html>
