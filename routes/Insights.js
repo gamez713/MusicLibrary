@@ -14,8 +14,9 @@ route.get("/", async (req, res) => {
 });
 
 route.post("/", async (req, res) => {
-    let { album_from, album_to, genre, rating_from, rating_to, playcount_from, playcount_to, reset} = req.body;
-    
+    let { album_from, album_to, genre, rating_from, rating_to, playcount_from, playcount_to} = req.body;
+    let empty = []
+
     if(album_from.length == 0)
     {   //If there is no from date, set date to default
         album_from = '1950-01-01'
