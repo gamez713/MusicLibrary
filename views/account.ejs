@@ -27,68 +27,85 @@
         <div class="user-pic">
             <img src="/assets/UHseal.png">
         </div>
-        <h2><%= userfname%> <%= userlname%></h2>
-        <h3>Joined: <%= userdate.slice(1)%></h3>
+        <div class="user-details">
+            <ul>
+                <li class="user-title"><%= userfname%> <%= userlname%></li>
+                <li><%= useremail%></li>
+                <li>Account Type: <%= usertype%></li>
+                <li>Joined: <%= userdate.slice(1)%></li>
+            </ul>
+        </div>
     </div>
 
     <div class="right-container">
-        <h1>Update Info</h1>
-
-        <center>
-        <div class="form-container">
-            <form action="/account" method="POST">
-                <div class="errors">
-                    <ul>
-                        <% if(messages.success_msg) { %>
-                        <li><%= messages.success_msg %></li>
-                        <% } %>
-                    </ul>
-                    <ul>
-                        <% if(messages.error) { %>
-                        <li><%= messages.error %></li>
-                        <% } %>
-                    </ul>
-                </div>
-
-                <div>
-                    <h2>First Name</h2>
-                    <input
-                        type="text"
-                        id="fname"
-                        name="fname"
-                        placeholder=<%= userfname%>
-                    required>
-                </div>
-
-                <div>
-                    <h2>Last Name</h2>
-                    <input
-                        type="text"
-                        id="lname"
-                        name="lname"
-                        placeholder=<%= userlname%>
-                    required>
-                </div>
-
-                <div>
-                    <h2>Email</h2>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder=<%= useremail%>
-                    required>
-                </div>
-
-                <div>
-                    <input
-                        type="submit"
-                        value="Submit"
-                        class="auth_button login_button">
-                </div>
-            </form>
+        <div class="right-top-container">
+            <h1 class="account-title">Update Account Info</h1>
+            <div class="errors">
+                <ul>
+                    <% if(messages.success_msg) { %>
+                    <li><%= messages.success_msg %></li>
+                    <% } %>
+                </ul>
+                <ul>
+                    <% if(messages.error) { %>
+                    <li><%= messages.error %></li>
+                    <% } %>
+                </ul>
+            </div> 
         </div>
-        </center>
+
+        <div class="right-bottom-container">
+            <div class="form-left">
+                <form action="/account" method="POST">
+                    <div class="account-title">Update Name</div>
+                    <div>
+                        <h2>First Name</h2>
+                        <input
+                            type="text"
+                            id="fname"
+                            name="fname"
+                            placeholder=<%= userfname%>
+                        required>
+                    </div>
+                    <div>
+                        <h2>Last Name</h2>
+                        <input
+                            type="text"
+                            id="lname"
+                            name="lname"
+                            placeholder=<%= userlname%>
+                        required>
+                    </div>
+                    <div>
+                        <input
+                            type="submit"
+                            value="Submit"
+                            class="auth_button login_button">
+                    </div>
+                </form>
+            </div>
+            
+            <div class="form-right">
+                <form action="/account" method="POST">
+                    <div class="account-title">Update Email</div>
+                    <div>
+                        <h2>Email</h2>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder=<%= useremail%>
+                        required>
+                    </div>
+                    <div>
+                        <input
+                            type="submit"
+                            value="Submit"
+                            class="auth_button login_button">
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 </body>

@@ -32,6 +32,7 @@ body{
     color: black; 
 }
 .errors {
+    text-align: center;
     color: antiquewhite;
 }
 .errors ul {
@@ -158,20 +159,7 @@ input {
     color: black;
     outline: none;
 }
-input[type="radio"] {
-    background-color: gray;
-    margin: 0;
-    color: antiquewhite;
-    width: 2em;
-    height: 2em;
-}
-input[type="radio"]:checked + label {
-    color: antiquewhite;
-}
-.radio span {
-    position: relative;
-    color: antiquewhite;
-}
+
 
 /********
 Dashboard
@@ -275,8 +263,6 @@ Insights
     color: #fff;
     border-bottom: solid 1px rgba(255,255,255,0.1);
 }
-
-
 .section-f {
     margin: 50px;
   }
@@ -289,45 +275,61 @@ Account
 }
 .left-container{
     padding-top: 50px;
-    padding-left: 50px;
-    width: 250px;
-    height: 250px;
-}
-.left-container h2 {
-    text-align: left;
-    color: white;
-    padding: 5px;
-}
-.left-container h3 {
-    text-align: left;
-    color: white;
+    width: 360px;
 }
 .user-pic {
-    width: 150px;
-    height: 150px; 
+    width: 100%;
+    height: 200px; 
 }
 .user-pic img {
-    width: 100%;
-    height: 100%;
+    display: block;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
 }
-.right-container{
-    padding-top: 50px;
+.user-details {
     width: 100%;
 }
-.right-container h1{
-    text-align: center;
+.user-title {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 25px;
+    font-weight: bold;
+}
+.user-details ul {
+    padding-left: 30px;
+    list-style: none;
     color: white;
-    padding: 5px;
+    font-size: 20px;
 }
-.form-container {
-    width: 280px;
-    height: 380px;
-    padding-top: 30px;
+.right-container {
+    width: 100%;
+    display: inline-block;
 }
-.form-container h2 {
+.right-top-container {
+    padding: 25px;
+}
+.right-bottom-container{
+    display: flex;
+	justify-content: space-evenly;
+    width: 100%;
+}
+.account-title {
+    width: 100%;
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    padding-bottom: 20px;
+}
+.form-left {
     color: white;
     text-align: left;
-    padding-left: 30px;
+    font-size: 15px;
+}
+.form-right {
+    color: white;
+    text-align: left;
+    font-size: 15px;
 }
 
 /******
