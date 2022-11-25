@@ -5,8 +5,9 @@ const { pool } = require("../dbConfig");
 
 route.get("/", (req, res) => {
     let empty = []
+    data = req.user.role.charAt(0).toUpperCase()+ req.user.role.slice(1);
     try{
-        res.render("browse", {info: empty});
+        res.render("browse", {info: empty, role: data});
     } catch (e) {
         console.log(e);
         res.send("There was an error");
@@ -24,7 +25,7 @@ route.post("/", async (req, res) => {
         )
         
         console.log(data.rows)
-        res.render("browse", {info: data.rows});
+        res.render("browse", {info: data.rows, role: req.user.role});
 
     } catch (e) {
         console.log(e);

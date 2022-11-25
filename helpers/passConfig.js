@@ -1,6 +1,7 @@
 const LocalStrategy = require("passport-local").Strategy;
 const { pool } = require("../dbConfig");
 const bcrypt = require("bcrypt");
+const req = require("express/lib/request");
 
 function initialize(passport) {
   const authenticateUser = (email, password, done) => {

@@ -4,6 +4,7 @@ const { pool } = require("../dbConfig");
 const { checkAuth } = require("../helpers/userAuth");
 
 route.get("/", checkAuth, (req, res) => {
+    data = req.user.role.charAt(0).toUpperCase()+ req.user.role.slice(1);
     let date = JSON.stringify(req.user.date_created)
         month = date.slice(5,8)
         day = date.slice(9,11)
@@ -15,7 +16,8 @@ route.get("/", checkAuth, (req, res) => {
         userlname: req.user.lname,
         useremail: req.user.email,
         usertype: req.user.role,
-        userdate: dateCreated
+        userdate: dateCreated,
+        role: data
     });
 });
 

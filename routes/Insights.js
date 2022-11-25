@@ -5,8 +5,9 @@ const { pool } = require("../dbConfig");
 
 route.get("/", async (req, res) => {
     let empty = []
+    data = req.user.role.charAt(0).toUpperCase()+ req.user.role.slice(1);
     try{
-        res.render("insights", {z: empty});
+        res.render("insights", {z: empty, role: data});
     } catch (e) {
         console.log(e);
         res.send("There was an error");
@@ -16,6 +17,7 @@ route.get("/", async (req, res) => {
 route.post("/", async (req, res) => {
     let { album_from, album_to, genre, rating_from, rating_to, playcount_from, playcount_to} = req.body;
     let empty = []
+    data = req.user.role.charAt(0).toUpperCase()+ req.user.role.slice(1);
 
     if(album_from.length == 0)
     {   //If there is no from date, set date to default
@@ -81,10 +83,10 @@ route.post("/", async (req, res) => {
             dateCreated = month + '/' + day + '/' + year
             word.rows[g].date_created = dateCreated
         }
-        res.render("insights", {z: word.rows})
+        res.render("insights", {z: word.rows, role: data})
     } catch (e) {
         console.log(e);
-        res.render("insights", {z: empty});
+        res.render("insights", {z: empty, role: data});
     }
 
 });

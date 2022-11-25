@@ -4,6 +4,7 @@ const { pool } = require("../dbConfig");
 const { checkAuth } = require("../helpers/userAuth");
 
 route.get("/", async (req, res) => {
+    data = req.user.role.charAt(0).toUpperCase()+ req.user.role.slice(1);
   
   try {
     const dict = {}
