@@ -3,7 +3,7 @@ const route = express.Router();
 const { pool } = require("../dbConfig");
 const { checkAuth } = require("../helpers/userAuth");
 
-route.get("/", async (req, res) => {
+route.get("/", checkAuth, async (req, res) => {
   
   try {
     const dict = {}

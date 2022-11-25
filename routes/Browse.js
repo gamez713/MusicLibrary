@@ -1,9 +1,9 @@
 const express = require("express");
 const route = express.Router();
-const { checkAuth } = require("../helpers/userAuth");
 const { pool } = require("../dbConfig");
+const { checkAuth } = require("../helpers/userAuth");
 
-route.get("/", (req, res) => {
+route.get("/", checkAuth, (req, res) => {
     let empty = []
     try{
         res.render("browse", {info: empty});
@@ -12,7 +12,6 @@ route.get("/", (req, res) => {
         res.send("There was an error");
     }
 });
-
 
 route.post("/", async (req, res) => {
     let { search } = req.body;
