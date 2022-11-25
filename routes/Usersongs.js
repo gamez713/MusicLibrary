@@ -5,7 +5,7 @@ const { checkAuth } = require("../helpers/userAuth");
 
 // another routes also appear here
 // this script to fetch data from MySQL databse table
-route.get('/', function(req, res, next) {
+route.get('/', checkAuth, function(req, res, next) {
     
     const user_id = req.user.id;
     pool.query(`SELECT songs.song_name, songs.song_genre, songs.song_time, songs.artist_f_name, songs.artist_l_name, songbelong.id FROM songbelong

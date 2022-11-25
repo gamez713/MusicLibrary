@@ -1,17 +1,17 @@
 const express = require("express");
 const route = express.Router();
-const { checkAuth } = require("../helpers/userAuth");
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var upload = multer();
 const { uploadSong } = require("../helpers/UploadFxns");
+const { checkAuth } = require("../helpers/userAuth");
 
 // for parsing multipart/form-data
 var upload = multer({ dest: './upload'});
 var type = upload.single('song_file');
 console.log(type);
 
-route.get("/", (req, res) => {
+route.get("/", checkAuth, (req, res) => {
     res.render("addsong");
 });
 

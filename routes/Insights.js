@@ -1,9 +1,9 @@
 const express = require("express");
 const route = express.Router();
-const { checkAuth } = require("../helpers/userAuth");
 const { pool } = require("../dbConfig");
+const { checkAuth } = require("../helpers/userAuth");
 
-route.get("/", async (req, res) => {
+route.get("/", checkAuth, async (req, res) => {
     let empty = []
     try{
         res.render("insights", {z: empty});

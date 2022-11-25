@@ -22,7 +22,6 @@ app.use(passport.session());
 // Routes
 app.set("view engine", "ejs");
 const accountRoute = require("./routes/Account");
-const addalbumRoute = require("./routes/Addalbum");
 const addsongRoute = require("./routes/Addsong");
 const browseRoute = require("./routes/Browse");
 const dashARoute = require("./routes/dashAdmin");
@@ -35,7 +34,6 @@ const musicplayerRoute = require("./routes/Musicplayer");
 const registerRoute = require("./routes/Register");
 const usersongsRoute = require("./routes/Usersongs");
 app.use("/account", accountRoute);
-app.use("/addalbum", addalbumRoute);
 app.use("/addsong", addsongRoute);
 app.use("/browse", browseRoute);
 app.use("/dashAdmin", dashARoute);
@@ -47,9 +45,6 @@ app.use("/", logoutRoute);
 app.use("/musicplayer", musicplayerRoute);
 app.use("/register", registerRoute);
 app.use("/usersongs", usersongsRoute);
-app.get("/", (req, res) => {
-    res.render("index");
-});
 
 // PORT
 const PORT = process.env.PORT || 4000;
