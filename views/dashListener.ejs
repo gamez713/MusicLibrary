@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-user">
+            <h1>Hello, <%= user.charAt(0).toUpperCase() + user.slice(1) %></h1>
+        </div>      
+        <div class="nav-list">
+            <ul>
+                <li><a href="/browse">Browse</a></li>
+                <li><a href="/musicplayer">MusicPlayer</a></li>
+                <li><a href="/account">Account</a></li>
+                <li><a href="/">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="big-container">
+        <form class="form-a" action="/dashListener" method="POST">
+            <input
+            type="text"
+            id="playlist_name"
+            name="playlist_name"
+            placeholder="Playlist Name"
+            required>
+            <div>
+                <input
+                type="submit"
+                value="Create Playlist"
+                class="auth_button login_button">
+            </div>
+        </form>
+
+        <form class="form-a" action="/dashListener" method="POST">
+            <input
+            type="text"
+            id="playlist_name2"
+            name="playlist_name2"
+            placeholder="Playlist Name (Case Sense)"
+            required>
+            <div>
+                <input
+                type="submit"
+                value="Delete Playlist"
+                class="auth_button login_button">
+            </div>
+        </form>
+
+        <form class="form-a" action="/dashListener" method="POST">
+            <div>
+                <input
+                type="text"
+                id="playlist_name3"
+                name="playlist_name3"
+                placeholder="Playlist Name"
+                required>
+            </div>
+            <div>
+                <input
+                type="text"
+                id="song_name"
+                name="song_name"
+                placeholder="Song Name"
+                required>
+            </div>
+            <div>
+                <input
+                type="submit"
+                value="Add Song to Playlist"
+                class="auth_button login_button">
+            </div>
+        </form>
+
+        <form class="form-a" action="/dashListener" method="POST">
+            <div>
+                <input
+                type="text"
+                id="playlist_name4"
+                name="playlist_name4"
+                placeholder="Playlist Name"
+                required>
+            </div>
+            <div>
+                <input
+                type="text"
+                id="song_name2"
+                name="song_name2"
+                placeholder="Song Name"
+                required>
+            </div>
+            <div>
+                <input
+                type="submit"
+                value="Delete Song From Playlist"
+                class="auth_button login_button">
+            </div>
+        </form>
+
+    </div>
+    <h2 class="text-color"><%= user.charAt(0).toUpperCase() + user.slice(1) %> Playlists</h2>
+        <% for(var i = 0; i < pcount; i++) { %>
+            <div class="big-container">
+            <table class="tablecontainer"> 
+            <th class="playlist-header">
+                <form action="/dashListener" method="POST">
+                    <input
+                    type="submit"
+                    value="<%= playlist[i].playlist_name %>"
+                    id="playlist_name5"
+                    name="playlist_name5"
+                    >
+                </form>
+                    <tr>
+                        <% b = 0 %>
+                        <% test[i].forEach(d=> { %>
+                            <td class="text-color">
+                                <%= d %>
+                            </td>
+                            <% b += 1 %>
+                    </tr>
+            </th>   
+            <% }) %>
+        <% } %>
+        </table>
+        </div>
+</body>
+</html>

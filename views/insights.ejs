@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+    <title>Insights</title>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-logo">
+            <a href="/dash<%=role%>"><img src="/assets/home.png"></a>
+        </div>    
+        <div class="nav-list">
+            <ul>
+                <li><a href="/browse">Browse</a></li>
+                <li><a href="/insights">Insights</a></li>
+                <li><a href="/musicplayer">MusicPlayer</a></li>
+                <li><a href="/account">Account</a></li>
+                <li><a href="/">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="big-container">
+        <form class="form-b" action="/insights" method="POST">
+          <div>
+            <p class="text-color">Album Created Date From</p>
+            <input
+            type="date"
+            id="album_from"
+            name="album_from"
+            placeholder="Default: 01/01/1950">
+            <p class="text-color">Default: 01/01/1950</p>
+          </div>
+          <div>
+            <p class="text-color">Album Created Date To</p>
+            <input
+            type="date"
+            id="album_to"
+            name="album_to">
+            <p class="text-color">Default: Current Date</p>
+          </div>
+          <div>
+            <p class="text-color">Genre Type</p>
+            <select id="genre" name="genre">
+              <option value=0>Any Genre</option>
+              <option value="pop">pop</option>
+              <option value="r&b">r&b</option>
+              <option value="hip hop">hip hop</option>
+              <option value="pop rock">pop rock</option>
+            </select>
+          </div>
+          <div>
+            <p class="text-color">Rating From</p>
+            <input
+            type="text"
+            id="rating_from"
+            name="rating_from"
+            placeholder="Min:0">
+            <p class="text-color">Rating To</p>
+            <input
+            type="text"
+            id="rating_to"
+            name="rating_to"
+            placeholder="Max:5">
+          </div>
+          <div>
+            <p class="text-color">Playcount From</p>
+            <input
+            type="text"
+            id="playcount_from"
+            name="playcount_from"
+            placeholder="Default: 0">
+            <p class="text-color">Playcount To</p>
+            <input
+            type="text"
+            id="playcount_to"
+            name="playcount_to"
+            placeholder="Default: Max">
+          </div>
+          <div>
+            <input type="reset" value="Clear Form" class="auth_button login_button">
+            <input
+            type="submit"
+            value="View Report"
+            class="auth_button login_button">
+          </div>
+        </form>
+      </div>
+
+
+    <section class="section-f">
+    <h1 class="h1-f">Reports</h1>
+    <div class="tbl-header">
+      <table class="table-f" cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+            <th class="th-f">Ablum Create Date</th>
+            <th class="th-f">Album</th>
+            <th class="th-f">Song</th>
+            <th class="th-f">Song Genre</th>
+            <th class="th-f">Total Play Count</th>
+            <th class="th-f">Average Rating</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="tbl-content">
+      <table class="table-f" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+          <%
+          if(z.length!=0){
+          var i=0;
+          z.forEach(function(data){
+          %>
+          <tr>
+            <td class="td-f"><%=data.date_created %></td>
+            <td class="td-f"><%=data.album_name %></td>
+            <td class="td-f"><%=data.song_name %></td>
+            <td class="td-f"><%=data.song_genre %></td>
+            <td class="td-f"><%=data.total_playcount %></td>
+            <td class="td-f"><%=data.avgrating %></td>
+          </tr>
+          <%  i++; }) %>
+          <% } else{ %>
+          <tr>
+            <td class="td-f" colspan="5">No Data Found</td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</body>
+</html>
