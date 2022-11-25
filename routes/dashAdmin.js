@@ -16,6 +16,7 @@ route.get("/", checkAuth, (req, res) => {
 route.post("/", async (req, res) => {
     let {user_from, user_to, role, rating_from, rating_to, playcount_from, playcount_to } = req.body;
     let empty = []
+    data2 = req.user.role.charAt(0).toUpperCase()+ req.user.role.slice(1);
 
     if(user_from.length == 0)
     {   //If there is no from date, set date to default
@@ -100,7 +101,7 @@ route.post("/", async (req, res) => {
             dateCreated = month + '/' + day + '/' + year
             word.rows[g].date_created = dateCreated
         }
-        res.render("dashAdmin", {user: req.user.fname, z: word.rows})
+        res.render("dashAdmin", {user: req.user.fname, z: word.rows, role: data2})
     } catch (e) {
         console.log(e);
         res.render("dashAdmin", {user: req.user.fname, z: empty});
