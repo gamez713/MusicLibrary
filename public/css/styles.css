@@ -68,7 +68,12 @@ Nav Bar
 }
 .nav-user a:hover {
     text-decoration: underline;
-} 
+}
+.nav-musician {
+    display: flex;
+    width: 225px;
+    justify-content: space-between;
+}
 .nav-list ul {
     padding-right: 12px;
     display: flex;
@@ -159,7 +164,6 @@ input {
     color: black;
     outline: none;
 }
-
 
 /********
 Dashboard

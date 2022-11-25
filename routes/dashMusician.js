@@ -3,9 +3,7 @@ const route = express.Router();
 const { pool } = require("../dbConfig");
 const { checkAuth } = require("../helpers/userAuth");
 
-route.get("/", async (req, res) => {
-    data = req.user.role.charAt(0).toUpperCase()+ req.user.role.slice(1);
-  
+route.get("/", checkAuth, async (req, res) => {
   try {
     const dict = {}
     const dict2 = {}
