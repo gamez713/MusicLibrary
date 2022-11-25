@@ -19,7 +19,7 @@ route.get("/", checkAuth, (req, res) => {
 route.post("/uploadsong", type, async (req, res) => {
     let { song_title, song_genre, song_file } = req.body;
     uploadSong(req.file, song_title, song_genre, req.user);
-    res.redirect("/dashboard");
+    res.redirect("/dashMusician");
 });
 
 module.exports = route;

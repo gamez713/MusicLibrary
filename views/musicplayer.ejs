@@ -66,7 +66,8 @@ let updateTimer;
 
 let curr_track = document.createElement('audio');
 
-let track_list = '<%- JSON.stringify(songs) %>'
+let track_list = '<%- JSON.stringify(songs) %>';
+let user_id = '<%- JSON.stringify(user) %>';
 //let myObj = JSON.stringify(track);
 track_list = JSON.parse(track_list)
 //console.log(typeof(track_list))
@@ -167,7 +168,25 @@ function seekUpdate() {
 
     curr_time.textContent = currentMinutes + ":" + currentSeconds;
     total_duration.textContent = durationMinutes + ":" + durationSeconds;
+    if(curr_time.textContent == total_duration.textContent) {
+      updateplaycounts();
+    }
   }
+}
+
+async function updateplaycounts (){
+  user_id =user_id.substring(1, user_id.length-1)
+  console.log("console log")
+  console.log(user_id);
+  console.log( track_list[track_index].song_id);
+  await fetch('/musicplayer/updateplaycount', {
+    method: 'POST',
+    body: JSON.stringify({user_id: user_id, song_id: track_list[track_index].song_id}), // string or object
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+ 
 }
   </script>
 </body>
