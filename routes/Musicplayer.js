@@ -4,7 +4,7 @@ const { pool } = require("../dbConfig");
 const { appendFile } = require("fs");
 
 route.get("/", async(req, res) => {
-
+  data = req.user.role.charAt(0).toUpperCase()+ req.user.role.slice(1);
 try {
   //counts number of playlist from specified user.
   const songs_count = await pool.query("SELECT COUNT(songs.song_name) FROM songs")
@@ -16,7 +16,7 @@ try {
        songs.rows[i].artist = Q
   }
   
-  res.render("musicplayer", {songs: songs.rows, scount: songs_count.rows[0].count});
+  res.render("musicplayer", {songs: songs.rows, scount: songs_count.rows[0].count, role: data});
   } catch (e) {
       console.log(e);
       res.send("There was an error");

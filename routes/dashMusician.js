@@ -4,7 +4,6 @@ const { pool } = require("../dbConfig");
 const { checkAuth } = require("../helpers/userAuth");
 
 route.get("/", checkAuth, async (req, res) => {
-  
   try {
     const dict = {}
     const dict2 = {}
