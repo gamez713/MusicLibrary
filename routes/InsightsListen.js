@@ -25,7 +25,8 @@ async function get_user_records(user_id, artist_fname, artist_lname, genre){
    const res = await pool.query(
         `SELECT s.song_id, s.artist_f_name, s.artist_l_name, s.song_name, s.song_genre, p.count FROM playcount p
         JOIN songs s ON p.song_id = s.song_id
-        WHERE p.id =$1;`, 
+        WHERE p.id =$1
+        ORDER BY p.count DESC;`, 
         [user_id]);
     return filter(res.rows, artist_fname, artist_lname, genre);
 }
