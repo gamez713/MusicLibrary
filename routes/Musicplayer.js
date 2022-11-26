@@ -16,7 +16,7 @@ try {
        songs.rows[i].artist = Q
   }
   console.log(data);
-  res.render("musicplayer", {user: req.user.id, songs: songs.rows, scount: songs_count.rows[0].count, role: data});
+  res.render("musicplayer", {userid: req.user.id, songs: songs.rows, scount: songs_count.rows[0].count, role: data});
   } catch (e) {
       console.log(e);
       res.send("There was an error");
@@ -24,17 +24,10 @@ try {
 });
 route.post("/updateplaycount", async (req, res) => {
   let { user_id, song_id } = req.body;
-  console.log(req.body);
-  console.log("it workkkkkssss!!!!");
-  // uploadSong(req.file, song_title, song_genre, req.user);
   table_count(user_id, song_id);
-  // res.redirect("/dashMusician");
 });
 
 async function table_count(userid,songid){
-  //let results1 =5;
-  console.log(userid);
-  console.log(songid);
   pool.query(
         `SELECT * FROM playcount WHERE playcount.id = $1 AND playcount.song_id = $2`, 
         [userid, songid],
@@ -42,8 +35,6 @@ async function table_count(userid,songid){
             if (err) {
                 throw err;
             }
-            console.log(results.rowCount);
-            //results1=results.rowCount;
             if(results.rowCount == 0){
               insert_count(userid,songid);
             }
@@ -51,16 +42,9 @@ async function table_count(userid,songid){
               update_count(userid,songid);
             }
         });
-  console.log("interesting");
-  //console.log(results1);
-
-  
 }
 
 async function insert_count(userid,songid){
-  
-  //console.log(user_id);
- 
   pool.query(
     `INSERT INTO playcount (id, song_id, count) VALUES ($1, $2, $3)`, 
     [userid, songid, 1],
@@ -68,14 +52,10 @@ async function insert_count(userid,songid){
         if (err) {
             throw err;
         }
-        console.log("insert happened");
-        
     });
-
 }
 
 async function update_count(userid,songid){
-  //console.log(user_id);
   pool.query(
     `UPDATE playcount SET count = count + 1 WHERE id = $1 AND song_id = $2`, 
     [userid, songid],
@@ -83,9 +63,6 @@ async function update_count(userid,songid){
         if (err) {
             throw err;
         }
-        console.log("update happened");
-        
-    });
-        console.log("interesting");
+    });    
 }
 module.exports = route;
