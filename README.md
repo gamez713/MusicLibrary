@@ -1,29 +1,45 @@
-After cloning repo to your local machine:
+# COOG MUSIC
 
-Ensure your files are up to date with github by runnung:
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-git pull
- 
-Next create a branch to work on your part:
+## About the project
 
-git checkout -b "brachname"  
+> My group was tasked with creating a website where UH students can upload their music for others to listen to.<br />
+In our website, a user can be either an Admin, Listener or, Musician.
 
-Once you have the code open in vscode:
-- You will need to install node modules:
+## Built with
 
-npm i
+![js] ![nodejs] ![npm] ![ejs]
 
-- To start the server run:
+## Development setup
 
-  npm run dev
-  
-  (Site will run on port 4000)
-  
-- You can now start adding your parts to the code.
+> Install locally with npm
+```sh
+npm install
+```
+```sh
+npm run dev
+```
 
-- Every time you save the server will automatically refresh without having to kill it.
+## Release History
 
-You can test your code by using postgre on your local machine.
-- Look at .env file. That is how i am connecting to my local database.
-* If you need help running a database on your local machine and testing it with your code let me know
-* I can write commands here to help out.
+* 0.1.0
+    * First proper release
+    * Changes
+* 0.0.1
+    * Test Launch
+
+## Collaborators
+
+Eduardo Gamez – Github: [https://github.com/gamez713]<br />
+Tam Nguyen – Github: [https://github.com/noneplayercharacter]<br />
+Shae Clarke – Github: [https://github.com/shae-clarke]<br />
+Merdi  – Github: [https://github.com/Idrem243]<br />
+Adarsh  – Github: [https://github.com/aadproj3570]
+
+<!-- Markdown link & img dfn's -->
+[product-screenshot]: public/assets/headphones.png
+[js]: https://img.shields.io/badge/-JavaScript-004466?logo=JavaScript
+[nodejs]: https://img.shields.io/badge/-NodeJS-004466?logo=node.js
+[npm]: https://img.shields.io/badge/-NPM-004466?logo=npm
+[ejs]: https://img.shields.io/badge/-<%=EJS%>-004466?
