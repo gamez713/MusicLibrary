@@ -3,8 +3,8 @@ const express = require("express");
 const route = express.Router();
 const { pool } = require("../dbConfig");
 const { checkAuth } = require("../helpers/userAuth");
-const alert= pool.query('LISTEN delete_notification');
-
+const notify = require('pg-notify');
+var alert = require('alert');
 route.get("/", checkAuth, async (req, res) => {
   try {
     const dict = {}
@@ -83,12 +83,7 @@ route.post("/", async (req, res) => {
             await pool.query(
                 'DELETE FROM playlist WHERE playlist_name= '+"'"+playlist_name2+"'"+' AND id ='+ x)
                 res.redirect("/dashMusician")
-                // delete_notification trigger
-                pool.on('notification', async (data)=> {
-                    const payload= JSON.parse(data.playload);
-                    console.log('Song deleted from a playlist', payload)                 
-                });
-
+                
         } catch (e) {
             console.log(e);
             res.redirect("/dashMusician");
@@ -110,9 +105,26 @@ route.post("/", async (req, res) => {
         try {
             var songID = await pool.query('SELECT song_id FROM songs WHERE song_name = '+"'"+ song_name2 + "'"+'')
             var playlistID = await pool.query('SELECT playlist_id FROM playlist WHERE playlist_name = '+"'"+ playlist_name4 +"'"+' AND id='+ x)
-            
-            await pool.query('DELETE FROM playlist_songs WHERE playlist_id= '+"'"+playlistID.rows[0].playlist_id+"' AND song_id = "+"'"+songID.rows[0].song_id+"'"+'')
+            var errFlag = 'Y';
+            pool.query('DELETE FROM playlist_songs WHERE playlist_id= '+"'"+playlistID.rows[0].playlist_id+"' AND song_id = "+"'"+songID.rows[0].song_id+"'"+'',
+            (err, results) => {
+                if(err) {
+                    console.log('An unexpected error occurred');
+                    alert('An unexpected error occurred');
+                }
+                if (results.rowCount > 0) {
+                    console.log(err);
+                    alert('Trigger: song has been removed from playlist!');
+                    /*if(err = 'error: delete_notification') {
+                       
+                    }*/
+                }  else {
+                    alert('Trigger: invalid song! please enter a song in that playlist.');
+                }
+            console.log(results.rowCount);
+            })
             res.redirect("/dashMusician")
+            
         } catch (e) {
             console.log(e);
             res.redirect("/dashMusician");
@@ -132,6 +144,14 @@ route.post("/", async (req, res) => {
             res.redirect("/dashMusician");
         }
     }
+    // Trigger connection
+    const client= await pool.connect()
+    client.on('notification', msg => {
+        console.log('Song deleted from the playlist')
+    })
+    client.query('LISTEN delete_notification')
+
+    
 });
 
 module.exports = route;
