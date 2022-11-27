@@ -34,8 +34,8 @@ npm run dev
 Eduardo Gamez – Github: [https://github.com/gamez713]<br />
 Tam Nguyen – Github: [https://github.com/noneplayercharacter]<br />
 Shae Clarke – Github: [https://github.com/shae-clarke]<br />
-Merdi  – Github: [https://github.com/Idrem243]<br />
-Adarsh  – Github: [https://github.com/aadproj3570]
+Merdi Mukenge – Github: [https://github.com/Idrem243]<br />
+Aadarsh Srivatsav  – Github: [https://github.com/aadproj3570]
 
 <!-- Markdown link & img dfn's -->
 [product-screenshot]: public/assets/headphones.png
