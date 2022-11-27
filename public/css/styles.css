@@ -337,11 +337,10 @@ Account
     font-size: 15px;
 }
 
-<<<<<<< HEAD
 /********
 Dashboard
 ********/
-=======
+
 /******
 Add Songs
 ******/
@@ -478,4 +477,4 @@ Music Player
   i.fa-step-backward {
     cursor: pointer;
   }
->>>>>>> main
+
