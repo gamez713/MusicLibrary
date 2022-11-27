@@ -1,4 +1,5 @@
 require("dotenv").config();
+var alert = require('alert');
 const Blob = require("@azure/storage-blob");
 const fs = require('fs');
 const { pool } = require("../dbConfig");
@@ -64,35 +65,38 @@ async function uploadSong(file, title, genre, user) {
         [id, title, genre, time, fName, lName],
         (err, results) => {
             if (err) {
-                throw err;
-            }
-            console.log(results.rows)
+                if(err = 'error: Please wait atleast five minutes before uploading another song') {
+                    alert('Trigger: Please wait atleast five minutes before uploading another song!');
+                }
+            } else {
+                pool.query(
+                    `INSERT INTO songbelong (song_id, id)
+                    VALUES ($1, $2)`, 
+                    [id, user.id],
+                    (err, results) => {
+                        if (err) {
+                            throw err;
+                        }
+                        console.log(results.rows)
+                        
+                    }
+                )
             
-        }
-    )
-    pool.query(
-        `INSERT INTO songbelong (song_id, id)
-        VALUES ($1, $2)`, 
-        [id, user.id],
-        (err, results) => {
-            if (err) {
-                throw err;
+                pool.query(
+                    `INSERT INTO song_link (song_id, song_link)
+                    VALUES ($1, $2)`, 
+                    [id, blobinfo.url],
+                    (err, results) => {
+                        if (err) {
+                            throw err;
+                        }
+                        console.log(results.rows)
+                        
+                    }
+                )
+                alert('Trigger: Successfully uploaded song!'); 
             }
-            console.log(results.rows)
-            
-        }
-    )
-
-    pool.query(
-        `INSERT INTO song_link (song_id, song_link)
-        VALUES ($1, $2)`, 
-        [id, blobinfo.url],
-        (err, results) => {
-            if (err) {
-                throw err;
-            }
-            console.log(results.rows)
-            
+            //console.log(results.rows) 
         }
     )
 }
