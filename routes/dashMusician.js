@@ -1,7 +1,9 @@
+
 const express = require("express");
 const route = express.Router();
 const { pool } = require("../dbConfig");
 const { checkAuth } = require("../helpers/userAuth");
+const alert= pool.query('LISTEN delete_notification');
 
 route.get("/", checkAuth, async (req, res) => {
   try {
@@ -81,6 +83,12 @@ route.post("/", async (req, res) => {
             await pool.query(
                 'DELETE FROM playlist WHERE playlist_name= '+"'"+playlist_name2+"'"+' AND id ='+ x)
                 res.redirect("/dashMusician")
+                // delete_notification trigger
+                pool.on('notification', async (data)=> {
+                    const payload= JSON.parse(data.playload);
+                    console.log('Song deleted from a playlist', payload)                 
+                });
+
         } catch (e) {
             console.log(e);
             res.redirect("/dashMusician");
