@@ -114,12 +114,12 @@ route.post("/", async (req, res) => {
                 }
                 if (results.rowCount > 0) {
                     console.log(err);
-                    alert('Trigger: song has been removed from playlist!');
+                    alert('song has been removed from playlist!');
                     /*if(err = 'error: delete_notification') {
                        
                     }*/
                 }  else {
-                    alert('Trigger: invalid song! please enter a song in that playlist.');
+                    alert('invalid song! please enter a song in that playlist.');
                 }
             console.log(results.rowCount);
             })
