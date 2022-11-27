@@ -54,7 +54,7 @@ async function pid_generator(){
 
 route.post("/", async (req, res) => {
     let { playlist_name, playlist_name2, playlist_name3, song_name, playlist_name4, song_name2, playlist_name5 } = req.body;
-    data = req.user.role.charAt(0).toUpperCase()+ req.user.role.slice(1);
+    data2 = req.user.role.charAt(0).toUpperCase()+ req.user.role.slice(1);
     if(typeof playlist_name !== 'undefined'){
         try {
             var duplicate = await pool.query("SELECT playlist_name FROM playlist WHERE playlist_name= "+"'"+playlist_name+"'"+" AND id= "+x)

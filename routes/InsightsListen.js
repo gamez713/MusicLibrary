@@ -16,6 +16,7 @@ route.get("/", checkAuth, async (req, res) => {
 
 route.post("/listenerReport", async (req, res) => {
     let { artist_fname, artist_lname, genre} = req.body;
+    data = req.user.role.charAt(0).toUpperCase()+ req.user.role.slice(1);
     let user_id = req.user.id;
     let userRecords = await get_user_records(user_id, artist_fname, artist_lname, genre);
     res.render("insightslisten", {z: userRecords, role: data});
