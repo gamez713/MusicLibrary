@@ -33,6 +33,7 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "pg": "^8.8.0",
+    "pg-notify": "^0.0.18",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

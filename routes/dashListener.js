@@ -2,9 +2,11 @@ const express = require("express");
 const route = express.Router();
 const { pool } = require("../dbConfig");
 const { checkAuth } = require("../helpers/userAuth");
+const query = pool.query('LISTEN delete_notification');
+const notify = require('pg-notify');
+var alert = require('alert');
 
 route.get("/", checkAuth, async (req, res) => {
-  
   try {
     const dict = {}
     const dict2 = {}
@@ -24,6 +26,7 @@ route.get("/", checkAuth, async (req, res) => {
                 dict[b].push(songs.rows[g].song_name)
             }
         }
+        dash = "/dashListener";
         res.render("dashListener", {user: req.user.fname, test: dict, test2: dict2, playlist: playlist_names.rows, pcount: playlist_count.rows[0].count});
     } catch (e) {
             console.log(e);
@@ -32,6 +35,7 @@ route.get("/", checkAuth, async (req, res) => {
 });
 
 async function pid_generator(){
+     //Playlist ID generator
     var playlist_id_result = 'P_';
     var characters = "1234567890"
     for ( var d = 0; d < 8; d++ ) {
@@ -80,6 +84,11 @@ route.post("/", async (req, res) => {
             await pool.query(
                 'DELETE FROM playlist WHERE playlist_name= '+"'"+playlist_name2+"'"+' AND id ='+ x)
                 res.redirect("/dashListener")
+                pool.on('notification', async (data) => {
+                    const payload = JSON.parse(data.playload);
+                    console.log('Song deleted from a playlist', payload)
+
+                });
         } catch (e) {
             console.log(e);
             res.redirect("/dashListener");
@@ -101,11 +110,23 @@ route.post("/", async (req, res) => {
         try {
             var songID = await pool.query('SELECT song_id FROM songs WHERE song_name = '+"'"+ song_name2 + "'"+'')
             var playlistID = await pool.query('SELECT playlist_id FROM playlist WHERE playlist_name = '+"'"+ playlist_name4 +"'"+' AND id='+ x)
-            
-            await pool.query('DELETE FROM playlist_songs WHERE playlist_id= '+"'"+playlistID.rows[0].playlist_id+"' AND song_id = "+"'"+songID.rows[0].song_id+"'"+'')
+            var errFlag = 'Y';
+            await pool.query('DELETE FROM playlist_songs WHERE playlist_id= '+"'"+playlistID.rows[0].playlist_id+"' AND song_id = "+"'"+songID.rows[0].song_id+"'"+'',
+            (err, results) => {
+                if(err) {
+                    console.log('An unexpected error occurred');
+                    alert('An unexpected error occurred');
+                }
+                if (results.rowCount > 0) {
+                    console.log(err);
+                    alert('Trigger: song has been removed from playlist!');
+                }  else {
+                    alert('Trigger: invalid song! please enter a song in that playlist.');
+                }
+            console.log(results.rowCount);
+            })
             res.redirect("/dashListener")
         } catch (e) {
-            console.log(e);
             res.redirect("/dashListener");
         }
     }
