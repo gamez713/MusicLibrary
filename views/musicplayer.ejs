@@ -1,14 +1,10 @@
 <html lang = "en">
 <head>
   <title> Music Player</title>
-  <link rel = "stylesheet"
-        href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-  <link rel = "stylesheet" type = "text/css" href = "/assets/style.css">
+  <link rel = "stylesheet" type="text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <link rel = "stylesheet" type="text/css" href = "/css/player.css">
 </head>
 <body>
-  <a href="/dash<%=role%>">Dashboard</a>
-  <a href="/browse">Browse</a>
-  <a href="/account">Account</a>
   <nav class="nav-bar">
     <div class="nav-logo">
         <a href="/dash<%=role%>"><img src="/assets/home.png"></a>
@@ -30,7 +26,7 @@
       <div class = "track-name">Track Name</div>
       <div class = "track-artist">Track Artist</div>
     </div>
- 
+
     <div class = "buttons">
       <div class = "prev-track" onclick = "prevTrack()">
         <i class = "fa fa-step-backward fa-2x"></i>
@@ -79,7 +75,8 @@ let updateTimer;
 
 let curr_track = document.createElement('audio');
 
-let track_list = '<%- JSON.stringify(songs) %>'
+let track_list = '<%- JSON.stringify(songs) %>';
+let user_id = '<%- JSON.stringify(userid) %>';
 //let myObj = JSON.stringify(track);
 track_list = JSON.parse(track_list)
 //console.log(typeof(track_list))
@@ -167,7 +164,7 @@ function seekUpdate() {
     seekPosition = curr_track.currentTime * (100 / curr_track.duration);
 
     seek_slider.value = seekPosition;
-
+   
     let currentMinutes = Math.floor(curr_track.currentTime / 60);
     let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
     let durationMinutes = Math.floor(curr_track.duration / 60);
@@ -180,7 +177,22 @@ function seekUpdate() {
 
     curr_time.textContent = currentMinutes + ":" + currentSeconds;
     total_duration.textContent = durationMinutes + ":" + durationSeconds;
+
+    if(Math.floor(curr_track.currentTime) == Math.floor(curr_track.duration - 3) && isPlaying ==true) {
+      updateplaycounts();
+    }
   }
+}
+
+async function updateplaycounts (){
+  user_id =user_id.substring(1, user_id.length-1);
+  await fetch('/musicplayer/updateplaycount', {
+    method: 'POST',
+    body: JSON.stringify({user_id: user_id, song_id: track_list[track_index].song_id}), 
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
 }
   </script>
 </body>
