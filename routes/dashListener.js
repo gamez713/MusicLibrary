@@ -6,6 +6,7 @@ const query = pool.query('LISTEN delete_notification');
 const notify = require('pg-notify');
 var alert = require('alert');
 const { delay } = require("@azure/core-util");
+var app = express();
 
 route.get("/", checkAuth, async (req, res) => {
   try {
@@ -88,14 +89,13 @@ route.post("/", async (req, res) => {
                 if (err) {
                     if(err = 'error: Please delete all songs in the playlist before deleting the playlist') {
                         alert('Trigger: Please delete all songs in the playlist before deleting the playlist!');
+                        res.send("<script>alert('Trigger: You must delete all songs in this playlist before deleting the playlist!');window.location.href='/dashListener';</script>");
                     }
                 } else {
                     alert('Trigger: Playlist successfully deleted!');
+                    res.send("<script>alert('Trigger: Playlist successfully deleted!');window.location.href='/dashListener';</script>");
                 }
             })
-            await delay(10);
-            res.redirect("/dashListener")
-
                 pool.on('notification', async (data) => {
                     const payload = JSON.parse(data.playload);
                     console.log('Song deleted from a playlist', payload)
@@ -132,12 +132,14 @@ route.post("/", async (req, res) => {
                 if (results.rowCount > 0) {
                     console.log(err);
                     alert('Trigger: song has been removed from playlist!');
+                    res.send("<script>alert('Trigger: song has been removed from playlist!');window.location.href='/dashListener';</script>");
                 }  else {
                     alert('Trigger: invalid song! please enter a song in that playlist.');
+                    res.send("<script>alert('Trigger: invalid song! please enter a song in that playlist.');window.location.href='/dashListener';</script>");
                 }
             console.log(results.rowCount);
             })
-            res.redirect("/dashListener")
+            //res.redirect("/dashMusician")
         } catch (e) {
             res.redirect("/dashListener");
         }
