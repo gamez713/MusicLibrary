@@ -51,18 +51,17 @@ async function uploadSong(file, title, genre, user) {
     var id =  'S_' + uuidv4().split('-')[0];
     var fName = user.fname
     var lName = user.lname 
-    var time = 0 // compute song length
     var count = 0
     var rate = 0
-    console.log("Debug", id, fName, lName, time)
+    console.log("Debug", id, fName, lName)
     file.name = `${id}_${title}.mp3`
     
     const blobinfo = await uploadFileToBlob(file)
     console.log(`created blob:\n\tname=${file.name}\n\turl=${blobinfo.url}`);
      pool.query(
-        `INSERT INTO songs (song_id, song_name, song_genre, song_time, artist_f_name, artist_l_name)
-        VALUES ($1, $2, $3, $4, $5, $6)`, 
-        [id, title, genre, time, fName, lName],
+        `INSERT INTO songs (song_id, song_name, song_genre, artist_f_name, artist_l_name)
+        VALUES ($1, $2, $3, $4, $5)`, 
+        [id, title, genre, fName, lName],
         (err, results) => {
             if (err) {
                 if(err = 'error: Please wait atleast five minutes before uploading another song') {
