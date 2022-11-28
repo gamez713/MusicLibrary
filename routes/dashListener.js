@@ -5,6 +5,7 @@ const { checkAuth } = require("../helpers/userAuth");
 const query = pool.query('LISTEN delete_notification');
 const notify = require('pg-notify');
 var alert = require('alert');
+const { delay } = require("@azure/core-util");
 
 route.get("/", checkAuth, async (req, res) => {
   try {
@@ -79,11 +80,22 @@ route.post("/", async (req, res) => {
     }
     if(typeof playlist_name2 !== 'undefined'){
         try {
+            /*await pool.query(
+                'DELETE FROM playlist_songs WHERE playlist_id in (SELECT playlist_id FROM playlist WHERE playlist_name = '+"'"+playlist_name2+"'"+' AND id ='+ x +');')*/
             await pool.query(
-                'DELETE FROM playlist_songs WHERE playlist_id in (SELECT playlist_id FROM playlist WHERE playlist_name = '+"'"+playlist_name2+"'"+' AND id ='+ x +');')
-            await pool.query(
-                'DELETE FROM playlist WHERE playlist_name= '+"'"+playlist_name2+"'"+' AND id ='+ x)
-                res.redirect("/dashListener")
+                'DELETE FROM playlist WHERE playlist_name= '+"'"+playlist_name2+"'"+' AND id ='+ x,
+                (err, results) => {
+                if (err) {
+                    if(err = 'error: Please delete all songs in the playlist before deleting the playlist') {
+                        alert('Trigger: Please delete all songs in the playlist before deleting the playlist!');
+                    }
+                } else {
+                    alert('Trigger: Playlist successfully deleted!');
+                }
+            })
+            await delay(10);
+            res.redirect("/dashListener")
+
                 pool.on('notification', async (data) => {
                     const payload = JSON.parse(data.playload);
                     console.log('Song deleted from a playlist', payload)
